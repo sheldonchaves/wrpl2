@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app='App'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=egde" />
+    <title>ModeloAdmin</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="lib/font/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/css/bsflat.css">
+    <link href="view/css/reset.css" rel="stylesheet">
+    <!--     <link href="view/css/geral.css" rel="stylesheet"> -->
+    <link href="view/css/admin.css" rel="stylesheet">
+    <!-- LIBS -->
+    <script type="text/javascript" src="lib/js/angular.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-resource.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-touch.min.js"></script>
+    <script type="text/javascript" src="lib/js/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-aside.min.js"></script>
+    <script type="text/javascript" src="lib/js/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="lib/js/ng-csv.min.js"></script>
+    <!-- THIS APP. -->
+    <script src="App.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/controllers.js"></script>
+</head>
+
+<body class="container-fluid" ng-controller="MainController">
+    <!--     <div class="row-fluid alpargatas-content" ng-view></div>
+
+ -->
+    <div class="header">
+        <!-- <span class="logo">
+            Logo
+        </span>
+        <div class="info">
+            ModeloAdmin
+        </div>
+
+         -->
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img class="whirlpool-logo" src="view/images/whirlpool.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">CARREFOUR</a></li>
+                    <li><a href="#">Link 2</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li uib-dropdown class="dropdown">
+                        <a href uib-dropdown-toggle>PAULA HERMANN <b class="caret"></b></a>
+                        <ul uib-dropdown-menu>
+                            <li><a href="#">Action1</a></li>
+                            <li><a href="#">Action2</a></li>
+                            <li><a href="#">Action3</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Log-out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-badges">
+                    <li uib-dropdown class="dropdown">
+                        <a href uib-dropdown-toggle><span class="icon-badge green-badge" data-line="1"><i class="fa fa-credit-card" aria-hidden="true"></i></span></a>
+                        <ul uib-dropdown-menu class="box-drop">
+                            <table class="table table-hover table-box-drop">
+                                <!-- <caption>Monthly Kills</caption> -->
+                                <thead class="thead-bold">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Emissor</th>
+                                        <th>Limite Total</th>
+                                        <th>Limite WHP</th>
+                                        <th>Exposição WRP</th>
+                                        <th>Em Aberto WRP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>445646546</td>
+                                        <td>R$ 110.000,00</td>
+                                        <td>R$ 85.000,00</td>
+                                        <td>R$ 25.000,00</td>
+                                        <td>R$ 5.000,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>98794656</td>
+                                        <td>R$ 60.000,00</td>
+                                        <td>R$ 45.000,00</td>
+                                        <td>R$ 15.000,00</td>
+                                        <td>R$ 2.000,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>654654646</td>
+                                        <td>R$ 160.000,00</td>
+                                        <td>R$ 145.000,00</td>
+                                        <td>R$ 115.000,00</td>
+                                        <td>R$ 90.000,00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>684654654</td>
+                                        <td>R$ 110.000,00</td>
+                                        <td>R$ 85.000,00</td>
+                                        <td>R$ 25.000,00</td>
+                                        <td>R$ 5.000,00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ul>
+                    </li>
+                    <!--  <li><a href="#" class="icon-badge green-badge" data-line="1"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li> -->
+                    <li><a href="#" class="icon-badge red-badge" data-line="2"><i class="fa fa-bullhorn" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="icon-badge blue-badge" data-line="3"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li ng-repeat="item in linksMenu"><a ng-class="{active: currentRoute == item.link}" href="#{{item.link}}"><i class="fa {{item.icon}}"></i><span>{{item.nome}}</span></a></li>
+        </ul>
+    </div>
+    <div class="main" ng-view>
+        <!-- Content -->
+    </div>
+</body>
+
+</html>
