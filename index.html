@@ -75,7 +75,7 @@
                         <a href uib-dropdown-toggle><span class="icon-badge green-badge" data-line="1"><i class="fa fa-credit-card" aria-hidden="true"></i></span></a>
                         <ul uib-dropdown-menu class="box-drop">
                             <table class="table table-hover table-box-drop">
-                                <caption>Ações Promocionais</caption> 
+                                <caption>Ações Promocionais</caption>
                                 <thead class="thead-bold">
                                     <tr>
                                         <th>#</th>
@@ -124,7 +124,21 @@
                         </ul>
                     </li>
                     <!--  <li><a href="#" class="icon-badge green-badge" data-line="1"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li> -->
-                    <li><a href="#" class="icon-badge red-badge" data-line="2"><i class="fa fa-bullhorn" aria-hidden="true"></i></a></li>
+                    <li uib-dropdown class="dropdown">
+                        <a href uib-dropdown-toggle><span class="icon-badge red-badge" data-line="2"><i class="fa fa-bullhorn" aria-hidden="true"></i></span></a>
+                        <ul uib-dropdown-menu class="box-drop">
+                            <div class="row">
+                                <div class="col-md-6 box-itens foco">
+                                    <span class="title"> Itens Foco</span>
+                                    <span class="body"></span>
+                                </div>
+                                <div class="col-md-6 box-itens critico">
+                                    <span class="title"> Itens Críticos</span>
+                                    <span class="body"></span>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
                     <li><a href="#" class="icon-badge blue-badge" data-line="3"><i class="fa fa-map-marker" aria-hidden="true"></i></a></li>
                 </ul>
             </div>

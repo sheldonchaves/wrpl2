@@ -327,7 +327,7 @@ p {
 /**/
 
 .graficos {
-        padding: 20px;
+    padding: 20px;
     margin-top: 10px;
 }
 
@@ -407,16 +407,17 @@ p {
 
 */
 
-#perfil .panel-body{
-padding-top: 0;
+#perfil .panel-body {
+    padding-top: 0;
 }
 
 .client-info {
-        background: #ddd;
+    background: #ddd;
     display: block;
     height: 44px;
     padding: 5px;
 }
+
 .client-info label,
 .client-info input {
     width: 49%;
@@ -471,3 +472,32 @@ input[type=checkbox]:checked + label:before {
 input[type=checkbox]:checked + label:before {
     letter-spacing: 5px;
 }
+
+.box-itens {
+    color: #000;
+    height: 100px;
+    display: inline-table;
+}
+
+.box-itens .title {
+    text-align: center;
+    background: #ccc;
+    display: block;
+    line-height: 40px;
+}
+
+.box-itens .body {
+    background: #eee;
+    height: 200px;
+    display: block;
+}
+.box-itens.foco .title{
+ background: #09f;
+ color: #fff;
+}
+
+.box-itens.critico .title{
+ background: #c30;
+ color: #fff;
+}
+         
