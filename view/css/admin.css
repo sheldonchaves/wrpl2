@@ -290,7 +290,7 @@ p {
 
 .notes li {
     border: 2px solid #ddd;
-    margin: 2px;
+    margin: 6px;
 }
 
 .notes li .text {
@@ -315,12 +315,20 @@ p {
     color: #000;
 }
 
+.table-box-drop caption {
+    font-size: 21px;
+    text-align: center;
+    background: #3c763d;
+    color: #fff;
+    font-weight: 600;
+}
+
 
 /**/
 
 .graficos {
-    padding: 20px;
-    margin-bottom: 20px;
+        padding: 20px;
+    margin-top: 10px;
 }
 
 .graph:before {
@@ -343,15 +351,19 @@ p {
 .graph1:before {
     content: '47%';
 }
+
 .graph2:before {
     content: '36%';
 }
+
 .graph3:before {
     content: '25%';
 }
+
 .graph4:before {
     content: '37%';
 }
+
 .graph5:before {
     content: '23%';
 }
@@ -361,21 +373,25 @@ p {
     text-align: center;
     background: #0095ff;
 }
+
 .graph2 {
     height: 80px;
     text-align: center;
     background: #f90;
 }
+
 .graph3 {
     height: 60px;
     text-align: center;
     background: #093;
 }
+
 .graph4 {
     height: 70px;
     text-align: center;
     background: #c3f;
 }
+
 .graph5 {
     height: 50px;
     text-align: center;
@@ -384,4 +400,74 @@ p {
 
 .whirlpool-logo {
     height: 35px;
+}
+
+
+/*
+
+*/
+
+#perfil .panel-body{
+padding-top: 0;
+}
+
+.client-info {
+        background: #ddd;
+    display: block;
+    height: 44px;
+    padding: 5px;
+}
+.client-info label,
+.client-info input {
+    width: 49%;
+    display: inline-block;
+}
+
+.client-class {
+    padding: 10px 9px;
+    margin: 15px;
+    background: #eee;
+}
+
+.client-class .title {
+    padding-right: 20px;
+}
+
+.client-class ul {
+    display: inline-block;
+}
+
+.client-class label {
+    font-size: 13px;
+    color: #999;
+}
+
+input[type=checkbox]:checked + label {
+    color: #000;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+}
+
+input[type=checkbox] + label:before {
+    content: "\f096";
+}
+
+input[type=checkbox] + label:before {
+    letter-spacing: 10px;
+    margin-left: 20px;
+}
+
+input[type=checkbox]:checked + label:before {
+    content: "\f046";
+}
+
+input[type=checkbox]:checked + label:before {
+    letter-spacing: 5px;
 }

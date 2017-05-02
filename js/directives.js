@@ -27,6 +27,14 @@ angular.module('App.directives', [])
 
         ddo.transclude = true;
 
+/*
+        ddo.transclude = {
+        'actions': '?panelsActions',
+        'body': 'paneBody',
+        'footer': '?paneFooter'
+      };
+*/
+
         var r = '?n=' + Math.random();
 
         ddo.templateUrl = 'view/directives/panel.html' + r;

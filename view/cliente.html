@@ -65,7 +65,12 @@
     </panel>
 </div>
 <div class="row">
-    <panel title="Perfil da Revenda" icon="fa-shopping-cart" height="60" col="6">
+    <panel id="perfil" title="Perfil da Revenda" icon="fa-shopping-cart" height="60" col="6">
+        <div class="row">
+            <div class="client-info">
+               	 <entry title="Número de Lojas:" type="text" size="12" model="voluntario.nome"></entry>
+            </div>
+        </div>
         <div class="row">
             <div class="graficos">
                 <div class="graph graph1">
@@ -83,6 +88,21 @@
                 <div class="graph graph5">
                     %MARCKUP
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="client-class">
+                <span class="title">Perfil da Loja</span>
+                <ul>
+                    <input id="classea" type="checkbox" />
+                    <label for="classea">Classe A</label>
+                    <input id="classeb" type="checkbox" checked />
+                    <label for="classeb">Classe B</label>
+                    <input id="classec" type="checkbox" checked/>
+                    <label for="classec">Classe C</label>
+                    <input id="classed" type="checkbox" />
+                    <label for="classed">Classe D</label>
+                </ul>
             </div>
         </div>
         <div class="row">
