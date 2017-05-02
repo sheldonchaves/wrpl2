@@ -187,6 +187,10 @@ p {
     line-height: 40px;
 }
 
+.panel-project .panel-body {
+    overflow: scroll;
+}
+
 
 /*
 .panel-project .panel-body {
@@ -491,13 +495,13 @@ input[type=checkbox]:checked + label:before {
     height: 200px;
     display: block;
 }
-.box-itens.foco .title{
- background: #09f;
- color: #fff;
+
+.box-itens.foco .title {
+    background: #09f;
+    color: #fff;
 }
 
-.box-itens.critico .title{
- background: #c30;
- color: #fff;
+.box-itens.critico .title {
+    background: #c30;
+    color: #fff;
 }
-         
