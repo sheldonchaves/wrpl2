@@ -36,6 +36,6 @@ angular.module('App', ["App.controllers", "App.services", "App.directives", "App
                 templateUrl: 'view/clientes.html',
                 controller: 'ClientesController'
             })
-            .otherwise({ redirectTo: 'home' });
+            .otherwise({ redirectTo: 'cliente' });
 
     });
