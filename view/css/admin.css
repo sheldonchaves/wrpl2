@@ -188,7 +188,12 @@ p {
 }
 
 .panel-project .panel-body {
-    overflow: scroll;
+    overflow-y: auto;
+}
+
+.panel-project .actions {
+    display: inline-block;
+    float: right;
 }
 
 
@@ -255,7 +260,7 @@ p {
 }
 
 .dl-flex dd {
-       flex: 60% 0 0;
+    flex: 60% 0 0;
     padding-left: 20px;
     padding: 2px 4px;
     background: #eee;
@@ -293,18 +298,21 @@ p {
 /**/
 
 .notes li {
-    border: 2px solid #ddd;
-    margin: 6px;
+    margin: 10px 0;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
+    background: linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
+    background-color: #FFFD75;
+    box-shadow: 5px 5px 13px -2px rgba(33, 33, 33, 0.2);
 }
 
 .notes li .text {
-    padding: 5px;
+    padding: 10px;
     display: block;
 }
 
 .notes li .date {
     display: block;
-    background: #4ba1ea;
+    background: rgba(0, 0, 0, .2);
     padding: 2px 5px;
     font-size: 12px;
     color: #fff;
@@ -442,13 +450,22 @@ p {
     display: inline-block;
 }
 
+background: -webkit-linear-gradient(top,
+rgba(0, 0, 0, 0.05),
+rgba(0, 0, 0, 0.25));
+background: linear-gradient(top,
+rgba(0, 0, 0, 0.05),
+rgba(0, 0, 0, 0.25));
+background-color: #FFFD75;
 .client-class label {
     font-size: 13px;
     color: #999;
+    user-select: none;
 }
 
 input[type=checkbox]:checked + label {
     color: #000;
+    user-select: none;
 }
 
 input[type=checkbox] {
@@ -465,16 +482,13 @@ input[type=checkbox] + label:before {
 }
 
 input[type=checkbox] + label:before {
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     margin-left: 20px;
 }
 
 input[type=checkbox]:checked + label:before {
     content: "\f046";
-}
-
-input[type=checkbox]:checked + label:before {
-    letter-spacing: 5px;
+    letter-spacing: 6px;
 }
 
 .box-itens {
@@ -504,4 +518,44 @@ input[type=checkbox]:checked + label:before {
 .box-itens.critico .title {
     background: #c30;
     color: #fff;
+}
+
+.slide {
+    height: 440px;
+}
+
+.slide .title {
+    display: block;
+    padding: 10px 0;
+    color: #fff;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.slide .text {
+    padding: 5px;
+    margin-top: 10px;
+    display: block;
+}
+
+.slide:nth-child(1) {
+    background: #7DBEB8;
+}
+
+.slide:nth-child(2) {
+    background: #B4DEC1;
+}
+
+.slide:nth-child(3) {
+    background: #F7E4BE;
+}
+
+.note-plus {
+        float: right;
+    margin-top: -7px;
+    margin-right: 3px;
+
+}
+.carousel-control{
+    opacity: .2;
 }

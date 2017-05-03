@@ -27,13 +27,14 @@ angular.module('App.directives', [])
 
         ddo.transclude = true;
 
-/*
+
+
         ddo.transclude = {
-        'actions': '?panelsActions',
-        'body': 'paneBody',
-        'footer': '?paneFooter'
-      };
-*/
+            'actions': '?panelActions'/*,
+            'body': 'paneBody',
+            'footer': '?paneFooter'*/
+        };
+
 
         var r = '?n=' + Math.random();
 

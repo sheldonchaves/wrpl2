@@ -1,5 +1,8 @@
 <div class="row">
     <panel title="Dados Revenda" icon="fa-user" height="40" col="7">
+        <panel-actions>
+            <button type="button" class="btn btn-default btn-sm" ng-click="gotoDev()"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
+        </panel-actions>
         <div class="row">
             <div class="col-md-6">
                 <dl class="dl-flex">
@@ -32,6 +35,9 @@
         </div>
     </panel>
     <panel title="Últimos Processos" icon="fa-bookmark" height="40" col="5">
+        <panel-actions>
+            <button type="button" class="btn btn-default btn-sm" ng-click="gotoDev()"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+        </panel-actions>
         <table class="table table-hover">
             <!-- <caption>Monthly Kills</caption> -->
             <thead>
@@ -66,9 +72,12 @@
 </div>
 <div class="row">
     <panel id="perfil" title="Perfil da Revenda" icon="fa-shopping-cart" height="60" col="6">
+        <panel-actions>
+            <button type="button" class="btn btn-warning btn-sm" ng-click="gotoDev()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+        </panel-actions>
         <div class="row">
             <div class="client-info">
-               	 <entry title="Número de Lojas:" type="text" size="12" model="voluntario.nome"></entry>
+                <entry title="Número de Lojas:" type="text" size="12" model="voluntario.nome"></entry>
             </div>
         </div>
         <div class="row">
@@ -179,10 +188,27 @@
     <panel title="Notas" icon="fa-comments" height="60" col="6">
         <div class="row">
             <div class="col-md-6">
-                <h3 class="title-gray-block">Gerais</h3> comportamento
+                <h3 class="title-gray-block">Gerais</h3>
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                    <div uib-slide index="0" class="slide animated">
+                        <span class="title">Comportamento</span>
+                        <span class="text">Texto Comportamento - Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
+                    </div>
+                    <div uib-slide index="1" class="slide animated">
+                        <span class="title">Mercado</span>
+                        <span class="text">Mercado - Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
+                    </div>
+                    <div uib-slide index="2" class="slide animated">
+                        <span class="title">Concorrência</span>
+                        <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
-                <h3 class="title-gray-block">Pontuais</h3>
+                <h3 class="title-gray-block">Pontuais 
+                <button type="button" class="btn btn-success btn-sm note-plus" ng-click="gotoDev()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+
+                </h3>
                 <ul class="notes">
                     <li>
                         <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>

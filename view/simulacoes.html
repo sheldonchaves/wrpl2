@@ -28,6 +28,9 @@
         </ul>
     </panel>
     <panel title="Últimas Simulações" icon="fa-sort-amount-asc" height="40" col="6">
+        <panel-actions>
+            <button type="button" class="btn btn-default btn-sm" ng-click="gotoDev()"><i class="fa fa-search" aria-hidden="true"></i> Filtro por SKU</button>
+        </panel-actions>
         <table class="table table-hover">
             <!-- <caption>Monthly Kills</caption> -->
             <thead class="thead-bold">
@@ -78,7 +81,13 @@
     </panel>
 </div>
 <div class="row">
-    <panel title="Comentários" icon="fa-table" height="60" col="12">
+    <panel title="Itens da Simulação" icon="fa-table" height="60" col="12">
+        <panel-actions>
+            <button type="button" class="btn btn-success btn-sm" ng-click="gotoDev()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="gotoDev()"><i class="fa fa-exchange" aria-hidden="true"></i> Efetivar O.V</button>
+            <button type="button" class="btn btn-info btn-sm" ng-click="gotoDev()"><i class="fa fa-download" aria-hidden="true"></i> Exportar</button>
+            <button type="button" class="btn btn-warning btn-sm" ng-click="gotoDev()"><i class="fa fa-file-o" aria-hidden="true"></i> Nova Simulação</button>
+        </panel-actions>
         <table class="table table-hover">
             <!-- <caption>Monthly Kills</caption> -->
             <thead class="thead-bold">

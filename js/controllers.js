@@ -32,16 +32,28 @@ angular.module("App.controllers", [])
 
 
     })
-    .controller("ClienteController", function($scope, $rootScope) {
+    .controller("DevController", function($scope, $rootScope) {
 
+
+    })
+    .controller("ClienteController", function($scope, $rootScope, $location) {
+        
+
+
+
+        $scope.gotoDev = function() {
+            $location.path("/dev");
+        }
 
     })
     .controller("Tela3Controller", function($scope, $rootScope) {
 
 
     })
-    .controller("SimulacoesController", function($scope, $rootScope) {
-
+    .controller("SimulacoesController", function($scope, $rootScope, $location) {
+        $scope.gotoDev = function() {
+            $location.path("/dev");
+        }
 
     })
     .controller("TermometroController", function($scope, $rootScope) {
@@ -54,7 +66,22 @@ angular.module("App.controllers", [])
     })
     .controller("MainController", function($scope, $rootScope, $filter, $uibModal, $document, $location) {
 
+
+
         $rootScope.linksMenu = [{
+            nome: 'Cliente',
+            link: '/cliente',
+            icon: 'fa-user'
+
+        }, {
+            nome: 'Simulações',
+            link: '/simulacoes',
+            icon: 'fa-usd'
+
+        }];
+
+        /*
+$rootScope.linksMenu = [{
             nome: 'Home',
             link: '/home',
             icon: 'fa-home'
@@ -84,6 +111,7 @@ angular.module("App.controllers", [])
             icon: 'fa-users'
 
         }];
+        */
 
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
             $rootScope.currentRoute = $location.path();

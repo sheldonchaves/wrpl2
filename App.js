@@ -1,14 +1,20 @@
-angular.module('App', ["App.controllers", "App.services", "App.directives", "App.filters",  "ngRoute", "ngResource", 'ui.bootstrap', 'ngCsv'
+angular.module('App', ["App.controllers", "App.services", "App.directives", "App.filters",  "ngRoute", "ngResource", 'ui.bootstrap', 'ngCsv', 'ngAnimate', 'ngSanitize'
     
 
 
     ])
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $animateProvider) {
+
+        $animateProvider.classNameFilter( /\banimated\b/ );
 
         $routeProvider
             .when('/home', {
                 templateUrl: 'view/home.html',
                 controller: 'HomeController'
+            })
+            .when('/dev', {
+                templateUrl: 'view/dev.html',
+                controller: 'DevController'
             })
             .when('/cliente', {
                 templateUrl: 'view/cliente.html',

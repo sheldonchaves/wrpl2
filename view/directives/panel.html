@@ -8,9 +8,11 @@
         </span>
 
          {{ title }}
+
+        <div ng-transclude="actions" class="actions"></div> 
     </div>
 
-<!-- <div ng-transclude="actions">Fallback actions</div> -->
+   
 
     <div class="panel-body" style="height: calc({{height}}vh - 115px)" ng-transclude ng-class="{ 'panel-body-form':type==='form' }">
     </div>
