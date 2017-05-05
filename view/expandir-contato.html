@@ -168,23 +168,28 @@
         <div class="form-group">
             <panel title="Telefone" height="40" col="12">
             <panel-actions>
-            <button type="button" class="btn btn-default btn-sm" ng-click="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-             <button type="button" class="btn btn-default btn-sm" ng-click="remover()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default btn-sm" ng-click="adicionarTelefone()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-default btn-sm"  uib-tooltip="Remover todos Telefones" ng-click="removerTodosTelefones()"><i class="fa fa-trash" aria-hidden="true"></i></button>
 </panel-actions>
               <table class="table table-hover">
             <!-- <caption>Monthly Kills</caption> -->
             <thead>
                 <tr>
-                    <th>Ação</th>
                     <th>Telefone</th>
                     <th>Prioritario</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="telefone in selectedClient.contato.telefones">
-                    <td></td>
                     <td>{{telefone.numero}}</td>
                     <td>{{telefone.prioritario}}</td>
+                    <td>
+                        <div class='hidden-sm hidden-xs action-buttons'>
+                        <a class="blue" style="color: blue"  ng-click="editarLinhaBranca(produto)" href=""><i class="fa fa-pencil bigger-130"></i></a>
+                        <a class="red" style="color: red"  ng-click="removerLinhaBranca(produto)" href=""><i class="fa fa-minus bigger-130"></i></a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -195,22 +200,27 @@
             <panel title="Email" height="40" col="12">
             <panel-actions>
             <button type="button" class="btn btn-default btn-sm" ng-click="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-             <button type="button" class="btn btn-default btn-sm" ng-click="remover()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+             <button type="button" class="btn btn-default btn-sm"  uib-tooltip="Remover todos emails" ng-click="removerTodosEmails()"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </panel-actions>
               <table class="table table-hover">
             <!-- <caption>Monthly Kills</caption> -->
             <thead>
                 <tr>
-                    <th>Ação</th>
                     <th>Telefone</th>
                     <th>Prioritario</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="email in selectedClient.contato.emails">
-                    <td></td>
                     <td>{{email.email}}</td>
                     <td>{{telefone.prioritario}}</td>
+                    <td>
+                        <div class='hidden-sm hidden-xs action-buttons'>
+                        <a class="blue" style="color: blue"  ng-click="editarLinhaBranca(produto)" href=""><i class="fa fa-pencil bigger-130"></i></a>
+                        <a class="red" style="color: red"  ng-click="removerLinhaBranca(produto)" href=""><i class="fa fa-minus bigger-130"></i></a>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
             </table>

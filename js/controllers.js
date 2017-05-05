@@ -284,6 +284,48 @@ angular.module("App.controllers", [])
             $uibModalInstance.close();
         }
 
+        $scope.adicionarTelefone = function(telefone){
+             var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/adcionar-telefone.html',
+              controller: 'ModalTelefoneEmailCtrl',
+              resolve: {
+                telefone: function () {
+                  return telefone;
+                }
+              }
+            });
+        }
+
+        $scope.adicionarEmail = function(email){
+             var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/adcionar-email.html',
+              controller: 'ModalTelefoneEmailCtrl',
+              resolve: {
+                email: function () {
+                  return email;
+                }
+              }
+            });
+        }
+
+        $scope.removerTodosTelefones = function(){
+            $rootScope.selectedClient.contato.telefones = []
+        }
+
+        $scope.salvarTelefone = function(telefone){
+            $rootScope.selectedClient.contato.telefones.push(telefone);
+        }
+
+        $scope.salvarEmail = function(email){
+             $rootScope.selectedClient.contato.emails.push(email);
+        }
+
+         $scope.removerTodosEmails = function(){
+            $rootScope.selectedClient.contato.emails = []
+        }
+
     })
     .controller("ModalInstanceUltimosContatosCtrl", function($scope, $rootScope, $uibModalInstance, contato) {
 
