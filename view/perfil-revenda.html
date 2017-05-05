@@ -8,32 +8,37 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-sm-12">
-        <form class="form-inline">
-         <div class="col-sm-2">
-          
-            <input type="text" class="form-control" ng-model="dadosGraficos[0].LB" placeholder="LB">
-          
-          </div>
-           <div class="col-sm-2">
-          
-            <input type="text" class="form-control" ng-model="dadosGraficos[0].LM" placeholder="LM">
-          
-          </div>
-           <div class="col-sm-2">
-          
-            <input type="text" class="form-control" ng-model="dadosGraficos[0].OUTROS" placeholder="OUTROS">
-          
-          </div>
-           <div class="col-sm-2">
-          
-            <input type="text" class="form-control" ng-model="dadosGraficos[0].TOS" placeholder="TOS">
-          
-          </div>
-           <div class="col-sm-2">
-          
-            <input type="text" class="form-control" ng-model="dadosGraficos[0].MARKUP" placeholder="MARKUP">
-          
-          </div>
+        <form class="form-horizontal">
+         
+          <div class="form-group">
+            <label class="col-sm-2 control-label">LB</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="dadosGraficos[0].LB" placeholder="LB">
+            </div>
+              <label class="col-sm-2 control-label">LM</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="dadosGraficos[0].LM" placeholder="LM">
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">OUTROS</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="dadosGraficos[0].OUTROS" placeholder="OUTROS">
+            </div>
+         
+            <label class="col-sm-2 control-label">TOS</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="dadosGraficos[0].TOS" placeholder="TOS">
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label class="col-sm-2 control-label">MARKUP</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="dadosGraficos[0].MARKUP" placeholder="MARKUP">
+            </div>
+         </div>
         </form>
 
         </div>
@@ -112,7 +117,7 @@
                             <th>#</th>
                             <th>Conc. Revenda</th>
                             <th>%</th>
-                            <th><button type="button" class="btn btn-success btn-sm note-plus" ng-click="adicionarConcorrenteRevenda()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></th>
+                            <th><button type="button" class="btn btn-success btn-sm note-plus" ng-click="editarConcorrenteRevenda()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></th>
                         </tr>
                     </thead>
                     <tbody>

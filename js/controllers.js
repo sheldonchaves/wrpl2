@@ -65,7 +65,18 @@ angular.module("App.controllers", [])
 
         function init(){
             if($rootScope.selectedClient == null){
-                $location.path("/caminho");
+
+               var modalInstance = $uibModal.open({
+                  animation: true,
+                  templateUrl: './view/selecionar-cliente.html',
+                  controller: 'ModalSelecionarClienteCtrl',
+                  resolve: {
+                    items: function () {
+                      return "";
+                    }
+                  }
+                });
+  
             }
         }
         init();
@@ -109,7 +120,8 @@ angular.module("App.controllers", [])
            var modalInstance = $uibModal.open({
               animation: true,
               templateUrl: './view/expandir-contato.html',
-              controller: 'ModalInstanceCtrl'
+              controller: 'ModalInstanceCtrl',
+              size: "lg",
             });
         }
 
@@ -121,18 +133,7 @@ angular.module("App.controllers", [])
     })
     .controller("CaminhoCtrl", function($scope, $rootScope, $uibModal) {
 
-          $scope.selecionarCliente = function(size, parentSelector){
-           var modalInstance = $uibModal.open({
-              animation: true,
-              templateUrl: './view/selecionar-cliente.html',
-              controller: 'ModalSelecionarClienteCtrl',
-              resolve: {
-                items: function () {
-                  return "";
-                }
-              }
-            });
-        }   
+          
 
     })
     .controller("ModalSelecionarClienteCtrl", function($scope, $rootScope, $location, $uibModalInstance, $timeout)  {
@@ -153,7 +154,7 @@ angular.module("App.controllers", [])
         }
 
     })
-    .controller("ModalInstancePerfilDeRevendaCtrl", function($scope, $rootScope, $uibModalInstance) {
+    .controller("ModalInstancePerfilDeRevendaCtrl", function($scope, $rootScope, $uibModalInstance, $uibModal) {
 
         
 
@@ -242,7 +243,8 @@ angular.module("App.controllers", [])
                 $uibModalInstance.close();
             }else{
                 contato.id = $rootScope.contatos.length;
-                $rootScope.contatos.push(contato);    
+                contato.quantidade = contato.quantidade+'%';
+                $rootScope.concorrentesRevenda.push(contato);    
                 $uibModalInstance.close();
             }
             
@@ -253,7 +255,8 @@ angular.module("App.controllers", [])
                 $uibModalInstance.close();
             }else{
                 contato.id = $rootScope.contatos.length;
-                $rootScope.contatos.push(contato);    
+                contato.quantidade = contato.quantidade+'%';
+                $rootScope.linhaBranca.push(contato);    
                 $uibModalInstance.close();
             }
             
@@ -330,7 +333,10 @@ angular.module("App.controllers", [])
     })
     .controller("MainController", function($scope, $rootScope, $filter, $uibModal, $document, $location) {
 
-
+        $rootScope.gotoCliente = function() {
+            $rootScope.selectedClient = null
+            $location.path("/selecionarCliente");
+        }
 
         $rootScope.linksMenu = [{
             nome: 'Cliente',
@@ -436,16 +442,113 @@ angular.module("App.controllers", [])
             {id:3,	data:"20.04.17 - 17:30",	descricao:"0000456458",	emissor:564654, status:"Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"}
         ]
 
+        $rootScope.agrupadoresClientes = [
+            {
+                clienteEmissorId:974651321318,
+                razao:"CARREFOUR",
+                cnpj:"08.675.549/0001-56",
+                cidade:"SÃO PAULO",
+                endereco:"RUA PROCOPIO LOHN",
+                uf:"SP",
+                pais:"BRASIL",
+                domicilioFiscal:"SC 0015",
+                cep:"88410-000",
+                inscricaoEstadual:"255155603",
+                status:"EM PROCESSAMENTO",
+                contato:{
+                    numero:45698744,
+                    nome:"José Cachoeira",
+                    agrupador:{
+                        numero:45698744,
+                        nome:"José Cachoeira"
+                    },
+                    supervisor:{
+                        numero:45648948,
+                        nome:"Paula Hermann"
+                    },
+                    cargo:"Gerente",
+                    telefones:[
+                        {
+                            numero:"+55 11 1234-5678",
+                            prioritario:true
+                        },
+                        {
+                            numero:"+55 11 7894-4563",
+                            prioritario:false
+                        }
+                    ],
+                    emails:[
+                        {
+                            email:"comercial@carrefour.com.br",
+                            prioritario:true
+                        },
+                        {
+                            email:"joao@carrefour.com.br",
+                            prioritario:false
+                        }
+                    ]
+                }
+            },
+            {
+                clienteEmissorId:974651321318,
+                razao:"CARREFOUR",
+                cnpj:"08.675.549/0001-56",
+                cidade:"SÃO PAULO",
+                endereco:"RUA PROCOPIO LOHN",
+                uf:"SP",
+                pais:"BRASIL",
+                domicilioFiscal:"SC 0015",
+                cep:"88410-000",
+                inscricaoEstadual:"255155603",
+                status:"EM PROCESSAMENTO",
+                contato:{
+                    numero:45698744,
+                    nome:"José Cachoeira",
+                    agrupador:{
+                        numero:45698744,
+                        nome:"José Cachoeira"
+                    },
+                    supervisor:{
+                        numero:45648948,
+                        nome:"Paula Hermann"
+                    },
+                    cargo:"Gerente",
+                    telefones:[
+                        {
+                            numero:"+55 11 1234-5678",
+                            prioritario:true
+                        },
+                        {
+                            numero:"+55 11 7894-4563",
+                            prioritario:false
+                        }
+                    ],
+                    emails:[
+                        {
+                            email:"comercial@carrefour.com.br",
+                            prioritario:true
+                        },
+                        {
+                            email:"joao@carrefour.com.br",
+                            prioritario:false
+                        }
+                    ]
+                }
+            }
+        ]
+
         $rootScope.clientes = [
             {
                 clienteEmissorId:974651321318,
                 razao:"CARREFOUR",
                 cnpj:"08.675.549/0001-56",
                 cidade:"SÃO PAULO",
-                endereço:"RUA PROCOPIO LOHN",
+                endereco:"RUA PROCOPIO LOHN",
                 uf:"SP",
                 pais:"BRASIL",
                 domicilioFiscal:"SC 0015",
+                cep:"88410-000",
+                inscricaoEstadual:"255155603",
                 contato:{
                     numero:45698744,
                     nome:"José Cachoeira",

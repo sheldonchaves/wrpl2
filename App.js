@@ -46,10 +46,10 @@ angular.module('App', ["App.controllers",
                 templateUrl: 'view/clientes.html',
                 controller: 'ClientesController'
             })
-            .when('/caminho', {
-                templateUrl: 'view/caminho.html',
-                controller: 'CaminhoCtrl'
+            .when('/selecionarCliente', {
+                templateUrl: 'view/cliente.html',
+                controller: 'ClienteController'
             })
-            .otherwise({ redirectTo: 'caminho' });
+            .otherwise({ redirectTo: 'cliente' });
 
     });
