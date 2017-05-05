@@ -442,7 +442,10 @@ angular.module("App.controllers", [])
                 razao:"CARREFOUR",
                 cnpj:"08.675.549/0001-56",
                 cidade:"SÃO PAULO",
+                endereço:"RUA PROCOPIO LOHN"
                 uf:"SP",
+                pais:"BRASIL",
+                domicilioFiscal:"SC 0015",
                 contato:{
                     numero:45698744,
                     nome:"José Cachoeira",

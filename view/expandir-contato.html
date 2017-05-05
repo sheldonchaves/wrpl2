@@ -14,12 +14,12 @@
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm-6">
-                                 <input type="text" class="form-control" placeholder="Email"
-                               ng-model="contato.descricao">
+                                 <input ng-disabled="true" type="text" class="form-control" placeholder="Codigo"
+                               ng-model="selectedClient.contato.numero">
                            </div>
                            <div class="col-sm-6">
-                               <input type="text" class="form-control" placeholder="Email"
-                               ng-model="contato.descricao">
+                               <input ng-disabled="true" type="text" class="form-control" placeholder="Nome"
+                               ng-model="selectedClient.contato.nome">
                            </div>
                        </div>
                     </div>
@@ -27,29 +27,29 @@
                 <div class="form-group">
                     <label class="col-sm-3">Endereço</label>
                     <div class="col-sm-4">
-                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.agrupador.numero">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.endereco">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3">Cidade</label>
                     <div class="col-sm-4">
-                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.agrupador.numero">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.cidade">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3">Estado</label>
                     <div class="col-sm-3">
-                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.numero">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.uf">
                     </div>
                     <label class="col-sm-3">País</label>
                     <div class="col-sm-3">
-                        <input ng-disabled="true" type="text" class="form-control" placeholder="Nome" ng-model="selectedClient.contato.nome">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Nome" ng-model="selectedClient.pais">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3">Domicilio Fiscal</label>
                     <div class="col-sm-3">
-                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.numero">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.domicilioFiscal">
                     </div>
                     <label class="col-sm-3">Cep</label>
                     <div class="col-sm-3">
