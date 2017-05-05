@@ -1,42 +1,51 @@
 <div class="row">
-    <panel title="Dados Revenda" icon="fa-user" height="40" col="7">
+    <panel title="Dados Revenda" icon="fa-user" height="40" col="6">
         <panel-actions>
-            <button type="button" class="btn btn-default btn-sm" ng-click="gotoDev()"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default btn-sm" ng-click="editarDadosCliente()"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
         </panel-actions>
         <div class="row">
             <div class="col-md-6">
                 <dl class="dl-flex">
                     <dt>Cliente Emissor</dt>
-                    <dd class="ng-binding">64545656465</dd>
+                    <dd class="ng-binding">{{selectedClient.clienteEmissorId}}</dd>
                     <dt>CNPJ</dt>
-                    <dd class="ng-binding">445577688/0001-99</dd>
+                    <dd class="ng-binding">{{selectedClient.cnpj}}</dd>
                     <dt>Telefone</dt>
-                    <dd class="ng-binding">+55 11 54548888</dd>
-                    <dt class="ng-binding">Cidade/UF</dt>
-                    <dd class="ng-binding">São Paulo/SP</dd>
+                    <dd class="ng-binding">{{selectedClient.contato.telefones[0].numero}}</dd>
+                    <dt class="ng-binding">Cidade</dt>
+                    <dd class="ng-binding">{{selectedClient.cidade}}</dd>
                     <dt class="ng-binding">Agrupador</dt>
-                    <dd class="ng-binding">687454646</dd>
+                    <dd class="ng-binding">{{selectedClient.contato.agrupador.numero}}</dd>
+                    <dt>CNPJ</dt>
+                    <dd class="ng-binding">{{selectedClient.cnpj}}</dd>
+                    <dt>Supervisor</dt>
+                    <dd class="ng-binding">{{selectedClient.contato.supervisor.numero}}</dd>
+                    <dt>Email</dt>
+                    <dd class="ng-binding">{{selectedClient.contato.emails[0].email}}</dd>
                 </dl>
             </div>
             <div class="col-md-6">
                 <dl class="dl-flex">
                     <dt>Razão</dt>
-                    <dd class="ng-binding">CARREFOUR</dd>
+                    <dd class="ng-binding">{{selectedClient.razao}}</dd>
                     <dt>Contato</dt>
-                    <dd class="ng-binding">João Cachoeira</dd>
+                    <dd class="ng-binding">{{selectedClient.contato.nome}}</dd>
                     <dt>Email</dt>
-                    <dd class="ng-binding">João@carrefour.com.br</dd>
-                    <dt class="ng-binding">Supervisor</dt>
-                    <dd class="ng-binding">654654654</dd>
-                    <dt class="ng-binding">Nome</dt>
-                    <dd class="ng-binding">Paula Hermann</dd>
+                    <dd class="ng-binding">{{selectedClient.contato.emails[0].email}}</dd>
+                    <dt>UF</dt>
+                    <dd class="ng-binding">{{selectedClient.uf}}</dd>
+                    <dt>Nome</dt>
+                    <dd class="ng-binding">{{selectedClient.contato.agrupador.nome}}</dd>
+                    <dt>Telefone</dt>
+                    <dd class="ng-binding">{{selectedClient.contato.telefones[0].numero}}</dd>
+
+                    <dd class="ng-binding">{{selectedClient.contato.supervisor.nome}}</dd>
                 </dl>
             </div>
         </div>
     </panel>
-    <panel title="Últimos Processos" icon="fa-bookmark" height="40" col="5">
+    <panel title="Últimos Processos" icon="fa-bookmark" height="40" col="3">
         <panel-actions>
-            <button type="button" class="btn btn-default btn-sm" ng-click="gotoDev()"><i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
         </panel-actions>
         <table class="table table-hover">
             <!-- <caption>Monthly Kills</caption> -->
@@ -69,11 +78,32 @@
             </tbody>
         </table>
     </panel>
+    <panel title="Últimos Contatos" icon="fa-bookmark" height="40" col="3">
+        <table class="table table-hover">
+            <!-- <caption>Monthly Kills</caption> -->
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Data</th>
+                <th>Descricao</th>
+                <th>Emissor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="contato in contatos">
+                <td ng-click="editarContatos(contato)">{{contato.id}}</td>
+                <td>{{contato.data | date:'dd.MM.yyyy - HH:mm' }}</td>
+                <td>{{contato.descricao}}</td>
+                <td>{{contato.emissor}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </panel>
 </div>
 <div class="row">
     <panel id="perfil" title="Perfil da Revenda" icon="fa-shopping-cart" height="60" col="6">
         <panel-actions>
-            <button type="button" class="btn btn-warning btn-sm" ng-click="gotoDev()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-warning btn-sm" ng-click="editar = editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </panel-actions>
         <div class="row">
             <div class="client-info">
@@ -188,43 +218,27 @@
     <panel title="Notas" icon="fa-comments" height="60" col="6">
         <div class="row">
             <div class="col-md-6">
-                <h3 class="title-gray-block">Gerais</h3>
+                <h3 class="title-gray-block">Gerais
+                <button type="button" class="btn btn-success btn-sm note-plus" ng-init="mostra=true" ng-click="mostra = !mostra"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                </h3>
                 <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                    <div uib-slide index="0" class="slide animated">
-                        <span class="title">Comportamento</span>
-                        <span class="text">Texto Comportamento - Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
-                    </div>
-                    <div uib-slide index="1" class="slide animated">
-                        <span class="title">Mercado</span>
-                        <span class="text">Mercado - Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
-                    </div>
-                    <div uib-slide index="2" class="slide animated">
-                        <span class="title">Concorrência</span>
-                        <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
+                    <div uib-slide ng-repeat="geral in gerais track by geral.id" index="geral.id" class="slide animated">
+                        <span ng-show="mostra" class="title">{{geral.titulo}}</span>
+                        <span ng-show="mostra" class="text">{{geral.texto}}</span>
+                        <textarea ng-show="!mostra" ng-model="geral.titulo" cols="30" rows="3"></textarea>
+                        <textarea ng-show="!mostra" ng-model="geral.texto"  cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <h3 class="title-gray-block">Pontuais 
-                <button type="button" class="btn btn-success btn-sm note-plus" ng-click="gotoDev()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success btn-sm note-plus" ng-click="adicionarPontual()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 
                 </h3>
-                <ul class="notes">
+                <ul class="notes" ng-repeat="pontual in pontuais">
                     <li>
-                        <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
-                        <span class="date">03.04.2017 - 09:36:45</span>
-                    </li>
-                    <li>
-                        <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
-                        <span class="date">03.04.2017 - 09:36:45</span>
-                    </li>
-                    <li>
-                        <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
-                        <span class="date">03.04.2017 - 09:36:45</span>
-                    </li>
-                    <li>
-                        <span class="text">Feito contato com o cliente que comentou sobre promoções de outros concorrentes</span>
-                        <span class="date">03.04.2017 - 09:36:45</span>
+                        <span class="text">{{pontual.texto}}</span>
+                        <span class="date">{{pontual.data | date:'dd.MM.yyyy HH:mm:ss'}}</span>
                     </li>
                 </ul>
             </div>

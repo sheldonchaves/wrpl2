@@ -1,0 +1,262 @@
+<div class="modal-header bg-primary" style="background-color:#333">
+    <button type="button" class="bootbox-close-button close white" data-dismiss="modal" aria-hidden="true"
+            style="margin-top: -10px;" ng-click="close()">×
+    </button>
+    <h4>Contato</h4>
+
+</div>
+<uib-tabset active="active">
+    <uib-tab index="0" heading="Detalhe Cliente">
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3">Cliente Emissor</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                 <input type="text" class="form-control" placeholder="Email"
+                               ng-model="contato.descricao">
+                           </div>
+                           <div class="col-sm-6">
+                               <input type="text" class="form-control" placeholder="Email"
+                               ng-model="contato.descricao">
+                           </div>
+                       </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Endereço</label>
+                    <div class="col-sm-4">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.agrupador.numero">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Cidade</label>
+                    <div class="col-sm-4">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.agrupador.numero">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Estado</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.numero">
+                    </div>
+                    <label class="col-sm-3">País</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Nome" ng-model="selectedClient.contato.nome">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Domicilio Fiscal</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.numero">
+                    </div>
+                    <label class="col-sm-3">Cep</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Nome" ng-model="selectedClient.contato.nome">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-3">Telefone</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.contato.numero">
+                    </div>
+                    <label class="col-sm-3">Email</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Nome" ng-model="selectedClient.contato.nome">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="col-sm-3">CNPJ</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Numero" ng-model="selectedClient.cnpj">
+                    </div>
+                    <label class="col-sm-3">Inscrição Estadual</label>
+                    <div class="col-sm-3">
+                        <input ng-disabled="true" type="text" class="form-control" placeholder="Nome" ng-model="selectedClient.inscricaoEstadual">
+                    </div>
+                </div>
+                <div class="form-group">
+                 <panel title="Agrupador x Cliente Emissor" height="40" col="12">
+                    <table class="table table-hover">
+            <!-- <caption>Monthly Kills</caption> -->
+                        <thead>
+                            <tr>
+                                <th>Cliente agrupador</th>
+                                <th>Cliente Emissor</th>
+                                <th>Nome</th>
+                                <th>CIDADE</th>
+                                <th>ESTADO</th>
+                                <th>CNPJ</th>
+                                <th>ENDEREÇO</th>
+                                <th>CEP</th>
+                                <th>TELEFONE</th>
+                                <th>EMAIL</th>
+                                <th>INSCRIÇÃO ESTADUAL</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="agrupadorCliente in agrupadoresClientes">
+                                <td>{{agrupadorCliente.cliente.agrupador}}</td>
+                                <td>{{agrupadorCliente.cliente.emissor}}</td>
+                                <td>{{agrupadorCliente.cliente.nome}}</td>
+                                <td>{{agrupadorCliente.cliente.cidade}}</td>
+                                <td>{{agrupadorCliente.cliente.estado}}</td>
+                                <td>{{agrupadorCliente.cliente.cnpj}}</td>
+                                <td>{{agrupadorCliente.cliente.endereco}}</td>
+                                <td>{{agrupadorCliente.cliente.cep}}</td>
+                                <td>{{agrupadorCliente.cliente.telefone}}</td>
+                                <td>{{agrupadorCliente.cliente.email}}</td>
+                                <td>{{agrupadorCliente.cliente.inscricaoEstadual}}</td>
+                                <td>{{agrupadorCliente.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </panel>
+                </div>
+
+            </form>
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Manutenção Contato">
+        <div class="modal-body">
+<form class="form-horizontal">
+         <div class="form-group">
+            <label class="col-sm-3">Agrupador</label>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-6">
+                         <input type="text" class="form-control" placeholder="numero"
+                       ng-model="contato.descricao">
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control" placeholder="nome"
+                       ng-model="contato.descricao">
+                   </div>
+               </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3">Contato</label>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-6">
+                         <input type="text" class="form-control" placeholder="numero"
+                       ng-model="contato.descricao">
+                   </div>
+                   <div class="col-sm-6">
+                       <input type="text" class="form-control" placeholder="nome"
+                       ng-model="contato.descricao">
+                   </div>
+               </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3">Cargo</label>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-6">
+                         <input type="text" class="form-control" placeholder="numero"
+                       ng-model="contato.descricao">
+                   </div>
+               </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <panel title="Telefone" height="40" col="12">
+            <panel-actions>
+            <button type="button" class="btn btn-default btn-sm" ng-click="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+             <button type="button" class="btn btn-default btn-sm" ng-click="remover()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+</panel-actions>
+              <table class="table table-hover">
+            <!-- <caption>Monthly Kills</caption> -->
+            <thead>
+                <tr>
+                    <th>Ação</th>
+                    <th>Telefone</th>
+                    <th>Prioritario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="telefone in selectedClient.contato.telefones">
+                    <td></td>
+                    <td>{{telefone.numero}}</td>
+                    <td>{{telefone.prioritario}}</td>
+                </tr>
+            </tbody>
+            </table>
+        
+            </panel>
+        </div>
+        <div class="form-group">
+            <panel title="Email" height="40" col="12">
+            <panel-actions>
+            <button type="button" class="btn btn-default btn-sm" ng-click="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+             <button type="button" class="btn btn-default btn-sm" ng-click="remover()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+            </panel-actions>
+              <table class="table table-hover">
+            <!-- <caption>Monthly Kills</caption> -->
+            <thead>
+                <tr>
+                    <th>Ação</th>
+                    <th>Telefone</th>
+                    <th>Prioritario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="email in selectedClient.contato.emails">
+                    <td></td>
+                    <td>{{email.email}}</td>
+                    <td>{{telefone.prioritario}}</td>
+                </tr>
+            </tbody>
+            </table>
+        
+            </panel>
+        </div>
+        <div class="form-group">
+            <panel title="Contatos" height="40" col="12">
+            <panel-actions>
+            <button type="button" class="btn btn-default btn-sm" ng-click="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+             <button type="button" class="btn btn-default btn-sm" ng-click="remover()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+</panel-actions>
+              <table class="table table-hover">
+            <!-- <caption>Monthly Kills</caption> -->
+            <thead>
+                <tr>
+                    <th>Codigo Contato</th>
+                    <th>Contato</th>
+                    <th>Cargo</th>
+                    <th>Telefone</th>
+                    <th>Prioritario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contato in cliente.contatos">
+                    <td>{{contato.codigo}}</td>
+                    <td>{{contato.email}}</td>
+                    <td>{{contato.cargo}}</td>
+                    <td>{{contato.email}}</td>
+                    <td>{{contato.prioritario}}</td>
+                </tr>
+            </tbody>
+            </table>
+        
+            </panel>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-7 col-sm-5">
+
+            <button data-bb-handler="cancel" type="button" class="btn btn-default" ng-click="$ctrl.close()">Criar</button>
+            <button data-bb-handler="cancel" type="button" class="btn btn-default" ng-click="salvarContato()">Editar</button>
+            <button data-bb-handler="confirm" type="button" class="btn btn-primary" ng-click="salvarContato(objeto)">Salvar</button>
+            </div>
+        </div>
+        </form>
+        </div>
+    </uib-tab>
+</uib-tabset>
+<div class="modal-footer">
+    
+</div>

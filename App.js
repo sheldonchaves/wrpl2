@@ -1,4 +1,14 @@
-angular.module('App', ["App.controllers", "App.services", "App.directives", "App.filters",  "ngRoute", "ngResource", 'ui.bootstrap', 'ngCsv', 'ngAnimate', 'ngSanitize'
+angular.module('App', ["App.controllers", 
+    "App.services", 
+    "App.directives", 
+    "App.filters",  
+    "ngRoute", 
+    "ngResource", 
+    'ui.bootstrap', 
+    'ngCsv', 
+    'ngAnimate', 
+    'ngSanitize',
+    'gridshore.c3js.chart'
     
 
 
@@ -36,6 +46,10 @@ angular.module('App', ["App.controllers", "App.services", "App.directives", "App
                 templateUrl: 'view/clientes.html',
                 controller: 'ClientesController'
             })
-            .otherwise({ redirectTo: 'cliente' });
+            .when('/caminho', {
+                templateUrl: 'view/caminho.html',
+                controller: 'CaminhoCtrl'
+            })
+            .otherwise({ redirectTo: 'caminho' });
 
     });
