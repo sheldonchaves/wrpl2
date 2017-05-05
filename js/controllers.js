@@ -222,13 +222,14 @@ angular.module("App.controllers", [])
               }
             });
         }
+    }
 
         $scope.adicionarPontualNaLista = function (pontual) {
           $uibModalInstance.close();
           $rootScope.pontuais.unshift(pontual)
         }
      })
-    .controller("ModalProdutoCtrl", function($scope, $rootScope, $uibModalInstance, produto) {
+     .controller("ModalProdutoCtrl", function($scope, $rootScope, $uibModalInstance, produto) {
 
         $scope.produto = produto;
 
