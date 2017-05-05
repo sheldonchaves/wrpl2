@@ -92,6 +92,15 @@ angular.module("App.controllers", [])
         }
 
         
+
+        $scope.editarPerfilDeRevenda = function(){
+           var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/perfil-revenda.html',
+              controller: 'ModalInstancePerfilDeRevendaCtrl'
+            });
+        }
+
         $scope.editarDadosSlide = function(index){
             alert(index);
         }
@@ -141,6 +150,112 @@ angular.module("App.controllers", [])
         $scope.goCliente = function(){
             $uibModalInstance.close();
 
+        }
+
+    })
+    .controller("ModalInstancePerfilDeRevendaCtrl", function($scope, $rootScope, $uibModalInstance) {
+
+        
+
+        $scope.close = function(){
+            $uibModalInstance.close();
+        }
+
+
+        $scope.editarLinhaBranca = function(produto){
+            var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/editar-linhaBranca.html',
+              controller: 'ModalProdutoCtrl',
+              resolve: {
+                produto: function () {
+                  return produto;
+                }
+              }
+            });
+        }
+
+        $scope.removerLinhaBranca = function(produto){
+            $rootScope.linhaBranca.splice(produto.id,1);
+        }
+
+        $scope.adicionarLinhaBranca = function(){
+             var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/editar-linhaBranca.html',
+              controller: 'ModalProdutoCtrl',
+              resolve: {
+                produto: function () {
+                  return "";
+                }
+              }
+            });
+        }
+
+        $scope.editarConcorrenteRevenda = function(produto){
+             var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/editar-concorrente.html',
+              controller: 'ModalProdutoCtrl',
+              resolve: {
+                produto: function () {
+                  return produto;
+                }
+              }
+            });
+        }
+
+        $scope.removerConcorrenteRevenda = function(produto){
+            $rootScope.concorrentesRevenda.splice(produto.id,1);
+        }
+
+        $scope.adicionarConcorrenteRevenda = function(){
+             $scope.adicionarLinhaBranca = function(){
+             var modalInstance = $uibModal.open({
+              animation: true,
+              templateUrl: './view/editar-concorrente.html',
+              controller: 'ModalProdutoCtrl',
+              resolve: {
+                produto: function () {
+                  return "";
+                }
+              }
+            });
+        }
+
+        $scope.adicionarPontualNaLista = function (pontual) {
+          $uibModalInstance.close();
+          $rootScope.pontuais.unshift(pontual)
+        }
+     })
+    .controller("ModalProdutoCtrl", function($scope, $rootScope, $uibModalInstance, produto) {
+
+        $scope.produto = produto;
+
+        $scope.close = function(){
+            $uibModalInstance.close();
+        }
+
+        $scope.adicionarConcorrente = function(contato){
+            if(!!contato.id){
+                $uibModalInstance.close();
+            }else{
+                contato.id = $rootScope.contatos.length;
+                $rootScope.contatos.push(contato);    
+                $uibModalInstance.close();
+            }
+            
+        }
+
+         $scope.adicionarLinha = function(contato){
+            if(!!contato.id){
+                $uibModalInstance.close();
+            }else{
+                contato.id = $rootScope.contatos.length;
+                $rootScope.contatos.push(contato);    
+                $uibModalInstance.close();
+            }
+            
         }
 
     })
@@ -230,16 +345,77 @@ angular.module("App.controllers", [])
 
         $rootScope.dadosGraficos =
         [
-            {"x": "%LB", "top-1": 10, "top-2": 12},
-            {"x": "%LM", "top-1": 11, "top-2": 13},
-            {"x": "%OUTROS", "top-1": 12, "top-2": 14},
-            {"x": "%TOS", "top-1": 13, "top-2": 15},
-            {"x": "%MARCKUP", "top-1": 14, "top-2": 16}
+            {"x": "VALORES", "LB": 47, "LM":36,"OUTROS":25,"TOS":37,"MARKUP":23}
         ];
         $rootScope.dadosGraficosColunas = 
         [
-            {"id": "top-1", "type": "bar", "name": "Top one"}
+            {"id": "LB", "type": "bar", "name": "LB"},
+            {"id": "LM", "type": "bar", "name": "LM"},
+            {"id": "OUTROS", "type": "bar", "name": "OUTROS"},
+            {"id": "TOS", "type": "bar", "name": "TOS"},
+            {"id": "MARKUP", "type": "bar", "name": "MARKUP"}
         ];
+
+        $rootScope.datax = {"id": "x"};
+
+        $rootScope.perfilLoja1 = 0;
+        $rootScope.perfilLoja2 = 1;
+        $rootScope.perfilLoja3 = 1;
+        $rootScope.perfilLoja4 = 0;
+
+        $rootScope.linhaBranca = 
+        [
+            {id:0,nome:"ELECTROLUX",quantidade:"45%"},
+            {id:1,nome:"PANASONIC",quantidade:"25%"},
+            {id:2,nome:"SAMSUNG",quantidade:"30%"},
+            {id:3,nome:"ATLAS",quantidade:"5%"}
+
+        ]
+
+        $rootScope.concorrentesRevenda = 
+        [
+            {id:0,nome:"ELECTROLUX",quantidade:"45%"},
+            {id:1,nome:"PANASONIC",quantidade:"25%"},
+            {id:2,nome:"SAMSUNG",quantidade:"30%"},
+            {id:3,nome:"ATLAS",quantidade:"5%"}
+
+        ]
+
+        $rootScope.categoriaLinks = 
+        [
+           {
+            nome:"Acesso Restrito",
+            icone:"",
+            links:[
+                    {
+                        titulo:"ZTLV18 - Administração Menu",
+                        url:""
+                    },
+                    {
+                        titulo:"ZTLV14 - Cod. De marca e Categoria Mix",
+                        url:""
+                    },
+                    {titulo:"ZTLV19 - Cadastro Ação Promo. E Mapa da Mina",url:""},{titulo:"ZTLV15 - Texos Fixos - Simulação e OV",url:""},{titulo:"ZTLV20 - TAB PRE Atribuir Marca e Categ",url:""},{titulo:"ZTLV11 - ZROUTE",url:""},{titulo:"ZTABP - Gerar de tabela de Preço",url:""},{titulo:"ZEXEC - Exceção de materiais - TAB preço",url:""}]},
+           {
+            nome:"Cliente",
+            icone:"",
+            links:[
+                    {
+                        titulo:"XD03 - Consulta Cadastro Cliente",
+                        url:""
+                    },
+                    {
+                        titulo:"ZTLV09 -Relação de telefones",
+                        url:""
+                    }]
+           },
+           {nome:"Atividades",icone:"",links:[{titulo:"ZTLV22 - Criar Providência",url:""},{titulo:"ZC10 - Relatório de atividades",url:""},{titulo:"MM03 - Cadastro de Produto",url:""}]},
+           {nome:"Estoque",icone:"",links:[{titulo:"ZVSCE17 - Sintese de Estoque",url:""},{titulo:"ZMBE - Consulta Estoque",url:""}]},
+           {nome:"Ordem/NF",icone:"",links:[{titulo:"ZV20 - Lista Ordem",url:""},{titulo:"ZV40 - Lista Ordem Orig.",url:""},{titulo:"VA01 - Criar Ordem R3",url:""},{titulo:"VA02 - Alterar Ordem R3",url:""},{titulo:"ZVC16 - Ordens Faturadas",url:""},{titulo:"ZSTR14 - Posição de Entrega",url:""},{titulo:"J1B3N - Exibir NF",url:""},{titulo:"ZSTR52 - Rel de ocorrências",url:""},{titulo:"ZSER - Consulta nº série do Produto",url:""}]},
+           {nome:"Meta/Var",icone:"",links:[{titulo:"ZV57 - Informações Gerenciais",url:""}]},
+           {nome:"Cred/Cob",icone:"",links:[{titulo:"FBL6N - Partidas Individuais",url:""},{titulo:"ZFI46 - Crédito do Cliente - Média ",url:""},{titulo:"FD33 - Crédito do Cliente",url:""},{titulo:"ZFE15 - Rel. Fretes Contas RE",url:""}]},
+           {nome:"Verbas",icone:"",links:[{titulo:"CJ37 - Empenho da verbas",url:""},{titulo:"CJ30 - 1º Empenho na Campanha",url:""},{titulo:"CJ31 - Consulta de verbas",url:""},{titulo:"CJ20N - Criar Campanha",url:""},{titulo:"ZPSR1 - Extrato Detalhado PEP",url:""},{titulo:"ZTLV10G - Consulta Bonificação",url:""}]}
+        ]
 
 
         $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {

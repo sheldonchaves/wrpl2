@@ -61,6 +61,13 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">CARREFOUR</a></li>
                     <li><a href="#">Link 2</a></li>
+                    <li uib-dropdown class="dropdown">
+                        <a href uib-dropdown-toggle>SAP<b class="caret"></b></a>
+                            <ul uib-dropdown-menu ng-repeat="categoria in categoriaLinks">
+                                <li><a href="">{{categoria.nome}}</a></li>
+                            </ul>
+                        
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li uib-dropdown class="dropdown">

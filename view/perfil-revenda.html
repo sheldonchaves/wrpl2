@@ -1,0 +1,139 @@
+<div class="modal-header bg-primary" style="background-color:#333">
+    <button type="button" class="bootbox-close-button close white" data-dismiss="modal" aria-hidden="true"
+            style="margin-top: -10px;" ng-click="close()">×
+    </button>
+    <h4>Adicionar Nota</h4>
+
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+        <form class="form-inline">
+         <div class="col-sm-2">
+          
+            <input type="text" class="form-control" ng-model="dadosGraficos[0].LB" placeholder="LB">
+          
+          </div>
+           <div class="col-sm-2">
+          
+            <input type="text" class="form-control" ng-model="dadosGraficos[0].LM" placeholder="LM">
+          
+          </div>
+           <div class="col-sm-2">
+          
+            <input type="text" class="form-control" ng-model="dadosGraficos[0].OUTROS" placeholder="OUTROS">
+          
+          </div>
+           <div class="col-sm-2">
+          
+            <input type="text" class="form-control" ng-model="dadosGraficos[0].TOS" placeholder="TOS">
+          
+          </div>
+           <div class="col-sm-2">
+          
+            <input type="text" class="form-control" ng-model="dadosGraficos[0].MARKUP" placeholder="MARKUP">
+          
+          </div>
+        </form>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+        <div class="row">
+            <div class="client-info">
+                <entry title="Número de Lojas:" type="text" size="12" model="voluntario.nome"></entry>
+            </div>
+        </div>
+        <div class="row">
+           <c3chart bindto-id="stacked-bar-plot1-chart" 
+           chart-data="dadosGraficos" 
+           chart-columns="dadosGraficosColunas" 
+           chart-x="datax">
+             <chart-axes values-x="x"/>
+             <chart-axis>
+             <chart-axis-x axis-position="outer-center"
+                           axis-label="Dados Mercado"
+                           axis-type="category"/>
+    </chart-axis>
+                  <chart-bar ratio="0.8"/>
+              <chart-group group-values="data 1,data 2"/>
+            </c3chart>
+        </div>
+        <div class="row">
+            <div class="client-class">
+                <span class="title">Perfil da Loja</span>
+                <ul>
+                    <input id="classea" ng-model="perfilLoja1" ng-true-value="1" ng-false-value="0" type="checkbox" />
+                    <label for="classea">Classe A</label>
+                    <input id="classeb" ng-model="perfilLoja2" ng-true-value="1" ng-false-value="0" type="checkbox"/>
+                    <label for="classeb">Classe B</label>
+                    <input id="classec" ng-model="perfilLoja3" ng-true-value="1" ng-false-value="0" type="checkbox"/>
+                    <label for="classec">Classe C</label>
+                    <input id="classed" ng-model="perfilLoja4" ng-true-value="1" ng-false-value="0" type="checkbox" />
+                    <label for="classed">Classe D</label>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <!-- <caption>Monthly Kills</caption> -->
+                    <thead class="thead-bold">
+                        <tr>
+                            <th>#</th>
+                            <th>Linha Branca</th>
+                            <th>%</th>
+                            <th><button type="button" class="btn btn-success btn-sm note-plus" ng-click="adicionarLinhaBranca()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="produto in linhaBranca">
+                            <td>{{produto.id}}</td>
+                            <td>{{produto.nome}}</td>
+                            <td>{{produto.quantidade}}</td>
+                            <td>
+                                <div class='hidden-sm hidden-xs action-buttons'>
+                                <a class="blue" style="color: blue" href=""><i class="fa fa-pencil bigger-130"></i></a>
+                                <a class="red" style="color: red" href=""><i class="fa fa-minus bigger-130"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <!-- <caption>Monthly Kills</caption> -->
+                    <thead class="thead-bold">
+                        <tr>
+                            <th>#</th>
+                            <th>Conc. Revenda</th>
+                            <th>%</th>
+                            <th><button type="button" class="btn btn-success btn-sm note-plus" ng-click="adicionarConcorrenteRevenda()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="produto in concorrentesRevenda">
+                            <td>{{produto.id}}</td>
+                            <td>{{produto.nome}}</td>
+                            <td>{{produto.quantidade}}</td>
+                            <td>
+                                <div class='hidden-sm hidden-xs action-buttons'>
+                                <a class="blue" style="color: blue" ng-click="editarConcorrenteRevenda(produto)" href=""><i class="fa fa-pencil bigger-130"></i></a>
+                                <a class="red" style="color: red" ng-click="removerConcorrenteRevenda(produto)" href=""><i class="fa fa-minus bigger-130"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+        

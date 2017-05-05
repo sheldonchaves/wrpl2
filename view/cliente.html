@@ -62,7 +62,7 @@
                 <tr>
                     <!-- <td contenteditable="true">12</td> -->
                     <td>1</td>
-                    <td>14.04.17 - 17:30</td>
+                    <td>14.04.17</td>
                     <td>Carrefour</td>
                     <td>423476</td>
                     <td>Em processamento</td>
@@ -70,7 +70,7 @@
                 <tr>
                     <!-- <td contenteditable="true">12</td> -->
                     <td>1</td>
-                    <td>20.04.17 - 12:30</td>
+                    <td>20.04.17</td>
                     <td>Carrefour</td>
                     <td>564654</td>
                     <td>Encerrado</td>
@@ -90,9 +90,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="contato in contatos">
-                <td ng-click="editarContatos(contato)">{{contato.id}}</td>
-                <td>{{contato.data | date:'dd.MM.yyyy - HH:mm' }}</td>
+            <tr ng-repeat="contato in contatos" ng-click="editarContatos(contato)">
+                <td>{{contato.id}}</td>
+                <td>{{contato.data | date:'dd.MM.yyyy' }}</td>
                 <td>{{contato.descricao}}</td>
                 <td>{{contato.emissor}}</td>
             </tr>
@@ -103,7 +103,7 @@
 <div class="row">
     <panel id="perfil" title="Perfil da Revenda" icon="fa-shopping-cart" height="60" col="6">
         <panel-actions>
-            <button type="button" class="btn btn-warning btn-sm" ng-click="editar = editar"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-warning btn-sm" ng-click="editarPerfilDeRevenda()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </panel-actions>
         <div class="row">
             <div class="client-info">
@@ -111,35 +111,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="graficos">
-                <div class="graph graph1">
-                    %LB
-                </div>
-                <div class="graph graph2">
-                    %LM
-                </div>
-                <div class="graph graph3">
-                    %OUTROS
-                </div>
-                <div class="graph graph4">
-                    %TOS
-                </div>
-                <div class="graph graph5">
-                    %MARCKUP
-                </div>
-            </div>
+           <c3chart bindto-id="stacked-bar-plot1-chart" 
+           chart-data="dadosGraficos" 
+           chart-columns="dadosGraficosColunas" 
+           chart-x="datax">
+             <chart-axes values-x="x"/>
+             <chart-axis>
+             <chart-axis-x axis-position="outer-center"
+                           axis-label="Dados Mercado"
+                           axis-type="category"/>
+    </chart-axis>
+                  <chart-bar ratio="0.8"/>
+              <chart-group group-values="data 1,data 2"/>
+            </c3chart>
         </div>
         <div class="row">
             <div class="client-class">
                 <span class="title">Perfil da Loja</span>
                 <ul>
-                    <input id="classea" type="checkbox" />
+                    <input ng-disabled="true" id="classea" ng-model="perfilLoja1" ng-true-value="1" ng-false-value="0" type="checkbox" />
                     <label for="classea">Classe A</label>
-                    <input id="classeb" type="checkbox" checked />
+                    <input ng-disabled="true" id="classeb" ng-model="perfilLoja2" ng-true-value="1" ng-false-value="0" type="checkbox"/>
                     <label for="classeb">Classe B</label>
-                    <input id="classec" type="checkbox" checked/>
+                    <input ng-disabled="true" id="classec" ng-model="perfilLoja3" ng-true-value="1" ng-false-value="0" type="checkbox"/>
                     <label for="classec">Classe C</label>
-                    <input id="classed" type="checkbox" />
+                    <input ng-disabled="true" id="classed" ng-model="perfilLoja4" ng-true-value="1" ng-false-value="0" type="checkbox" />
                     <label for="classed">Classe D</label>
                 </ul>
             </div>
@@ -156,25 +152,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>ELECTROLUX</td>
-                            <td>45%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>PANASONIC</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>SAMSUNG</td>
-                            <td>30%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>ATLAS</td>
-                            <td>5%</td>
+                         <tr ng-repeat="produto in linhaBranca">
+                            <td>{{produto.id}}</td>
+                            <td>{{produto.nome}}</td>
+                            <td>{{produto.quantidade}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -190,25 +171,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>ELECTROLUX</td>
-                            <td>45%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>PANASONIC</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>SAMSUNG</td>
-                            <td>30%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>ATLAS</td>
-                            <td>5%</td>
+                         <tr ng-repeat="produto in concorrentesRevenda">
+                            <td>{{produto.id}}</td>
+                            <td>{{produto.nome}}</td>
+                            <td>{{produto.quantidade}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -225,8 +191,7 @@
                     <div uib-slide ng-repeat="geral in gerais track by geral.id" index="geral.id" class="slide animated">
                         <span ng-show="mostra" class="title">{{geral.titulo}}</span>
                         <span ng-show="mostra" class="text">{{geral.texto}}</span>
-                        <textarea ng-show="!mostra" ng-model="geral.titulo" cols="30" rows="3"></textarea>
-                        <textarea ng-show="!mostra" ng-model="geral.texto"  cols="30" rows="10"></textarea>
+                        <textarea ng-show="!mostra" ng-model="geral.texto"  cols="30" rows="20"></textarea>
                     </div>
                 </div>
             </div>
