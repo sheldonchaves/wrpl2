@@ -1,4 +1,5 @@
 angular.module("App.controllers", [])
+    .constant('_', _)
     .controller("HomeController", function ($scope, $rootScope, $location) {
         "use strict";
 
@@ -149,7 +150,7 @@ angular.module("App.controllers", [])
         };
 
     })
-    .controller("ModalInstancePerfilDeRevendaCtrl", function ($scope, $rootScope, $uibModalInstance, $uibModal) {
+    .controller("ModalInstancePerfilDeRevendaCtrl", function ($scope, $rootScope, $uibModalInstance, $uibModal, _) {
         "use strict";
 
 
@@ -172,7 +173,7 @@ angular.module("App.controllers", [])
         };
 
         $scope.removerLinhaBranca = function (produto) {
-            $rootScope.linhaBranca.splice(produto.id, 1);
+            $rootScope.linhaBranca = _.without($rootScope.linhaBranca, _.findWhere($rootScope.linhaBranca, {id: produto.id}));
         };
 
         $scope.adicionarLinhaBranca = function () {
@@ -202,7 +203,7 @@ angular.module("App.controllers", [])
         };
 
         $scope.removerConcorrenteRevenda = function (produto) {
-            $rootScope.concorrentesRevenda.splice(produto.id, 1);
+            $rootScope.concorrentesRevenda = _.without($rootScope.concorrentesRevenda, _.findWhere($rootScope.concorrentesRevenda, {id: produto.id}));
         };
 
         $scope.adicionarConcorrenteRevenda = function () {
@@ -265,8 +266,8 @@ angular.module("App.controllers", [])
         };
 
         $scope.adicionarEmail = function (email) {
-            email.id =  $rootScope.selectedClient.contato.emails.length;
-            $rootScope.selectedClient.contato.emails.push(email);
+            email.id = $rootScope.selectedClient.contatos[0].emails.length;
+            $rootScope.selectedClient.contatos[0].emails.push(email);
             $uibModalInstance.close();
         };
 
@@ -279,8 +280,8 @@ angular.module("App.controllers", [])
             $uibModalInstance.close();
         };
         $scope.adicionarTelefone = function (telefone) {
-            telefone.id =  $rootScope.selectedClient.contato.telefones.length;
-            $rootScope.selectedClient.contato.telefones.push(telefone);
+            telefone.id = $rootScope.selectedClient.contatos[0].telefones.length;
+            $rootScope.selectedClient.contatos[0].telefones.push(telefone);
             $uibModalInstance.close();
         };
 
@@ -328,20 +329,52 @@ angular.module("App.controllers", [])
         };
 
         $scope.removerTodosTelefones = function () {
-            $rootScope.selectedClient.contato.telefones = [];
+            $rootScope.selectedClient.contatos[0].telefones = [];
         };
 
         $scope.removerTodosEmails = function () {
-            $rootScope.selectedClient.contato.emails = [];
+            $rootScope.selectedClient.contatos[0].emails = [];
         };
 
         $scope.removerEmail = function (email) {
-            $rootScope.selectedClient.contato.emails.splice(email.id, 1);
+            $rootScope.selectedClient.contatos[0].emails = _.without($rootScope.selectedClient.contatos[0].emails, _.findWhere($rootScope.selectedClient.contatos[0].emails, {id: email.id}));
         };
 
         $scope.removerTelefone = function (telefone) {
-            $rootScope.selectedClient.contato.telefones.splice(telefone.id, 1);
+            $rootScope.selectedClient.contatos[0].telefones = _.without($rootScope.selectedClient.contatos[0].telefones, _.findWhere($rootScope.selectedClient.contatos[0].telefones, {id: telefone.id}));
         };
+
+        $scope.criarContato = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/novo-contato.html',
+                controller: 'ModalNovoContatoCtrl'
+            });
+        };
+
+    })
+    .controller("ModalNovoContatoCtrl", function ($scope, $rootScope, $uibModalInstance) {
+        "use strict";
+
+
+        $scope.close = function () {
+            $uibModalInstance.close();
+        };
+
+        $scope.adicionarNovoContato = function (contato) {
+           contato.numero = Math.floor(Math.random() * (99999999 - 10000000 +1)) + 0;
+           if(!!contato.telefones){
+            contato.telefones[0].id = contato.telefones.length;
+           contato.telefones[0].prioritario = false;
+           }
+            if(!!contato.emails){
+           contato.emails[0].id = contato.emails.length;
+           contato.emails[0].prioritario = false;
+            }
+           $rootScope.selectedClient.contatos.push(contato);
+            $uibModalInstance.close();
+        };
+
 
     })
     .controller("ModalInstanceUltimosContatosCtrl", function ($scope, $rootScope, $uibModalInstance, contato) {
@@ -693,43 +726,84 @@ angular.module("App.controllers", [])
                 domicilioFiscal: "SC 0015",
                 cep: "88410-000",
                 inscricaoEstadual: "255155603",
-                contato: {
-                    numero: 45698744,
-                    nome: "José Cachoeira",
-                    agrupador: {
+                contatos: [
+                    {
                         numero: 45698744,
-                        nome: "José Cachoeira"
-                    },
-                    supervisor: {
-                        numero: 45648948,
-                        nome: "Paula Hermann"
-                    },
-                    cargo: "Gerente",
-                    telefones: [
-                        {
-                            id:0,
-                            numero: "+55 11 1234-5678",
-                            prioritario: true
+                        nome: "José Cachoeira",
+                        prioritario: true,
+                        agrupador: {
+                            numero: 45698744,
+                            nome: "José Cachoeira"
                         },
-                        {
-                            id:1,
-                            numero: "+55 11 7894-4563",
-                            prioritario: false
-                        }
-                    ],
-                    emails: [
-                        {
-                            id:0,
-                            email: "comercial@carrefour.com.br",
-                            prioritario: true
+                        supervisor: {
+                            numero: 45648948,
+                            nome: "Paula Hermann"
                         },
-                        {
-                            id:1,
-                            email: "joao@carrefour.com.br",
-                            prioritario: false
-                        }
-                    ]
-                }
+                        cargo: "Gerente",
+                        telefones: [
+                            {
+                                id: 0,
+                                numero: "+55 11 1234-5678",
+                                prioritario: true
+                            },
+                            {
+                                id: 1,
+                                numero: "+55 11 7894-4563",
+                                prioritario: false
+                            }
+                        ],
+                        emails: [
+                            {
+                                id: 0,
+                                email: "joao@carrefour.com.br",
+                                prioritario: true
+                            },
+                            {
+                                id: 1,
+                                email: "comercial@carrefour.com.br",
+                                prioritario: false
+                            }
+                        ]
+                    },
+                    {
+                        numero: 45698744,
+                        nome: "Comercial",
+                        prioritario: false,
+                        agrupador: {
+                            numero: 45698744,
+                            nome: "Comercial"
+                        },
+                        supervisor: {
+                            numero: 45648948,
+                            nome: "Paula Hermann"
+                        },
+                        cargo: "Comercial",
+                        telefones: [
+                            {
+                                id: 0,
+                                numero: "+55 11 1234-5678",
+                                prioritario: true
+                            },
+                            {
+                                id: 1,
+                                numero: "+55 11 7894-4563",
+                                prioritario: false
+                            }
+                        ],
+                        emails: [
+                            {
+                                id: 0,
+                                email: "comercial@carrefour.com.br",
+                                prioritario: true
+                            },
+                            {
+                                id: 1,
+                                email: "Comercial@carrefour.com.br",
+                                prioritario: false
+                            }
+                        ]
+                    }
+                ]
             }
         ];
 

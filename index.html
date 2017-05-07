@@ -26,6 +26,7 @@
     <script type="text/javascript" src="lib/js/d3/d3.min.js"></script>
     <script type="text/javascript" src="lib/js/c3/c3.min.js"></script>
     <script type="text/javascript" src="lib/js/c3-angular-directive-1.3.0/c3-angular.min.js"></script>
+    <script type="text/javascript" src="lib/js/underscore-min.js"></script>
     <!-- THIS APP. -->
     <script src="App.js"></script>
     <script src="js/services.js"></script>
@@ -60,7 +61,7 @@
             <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                 <ul class="nav navbar-nav">
                     <li><a href="#">CARREFOUR</a></li>
-                    <li><a ng-click="gotoCliente()" href="">Link 2</a></li>
+                    <li><a ng-click="gotoCliente()" href="">Trocar de Cliente</a></li>
                     <li uib-dropdown class="dropdown">
                         <a href uib-dropdown-toggle>SAP<b class="caret"></b></a>
                             <ul uib-dropdown-menu ng-repeat="categoria in categoriaLinks">

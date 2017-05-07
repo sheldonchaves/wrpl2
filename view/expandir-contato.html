@@ -15,11 +15,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input ng-disabled="true" type="text" class="form-control" placeholder="Codigo"
-                                       ng-model="selectedClient.contato.numero">
+                                       ng-model="selectedClient.contatos[0].numero">
                             </div>
                             <div class="col-sm-6">
                                 <input ng-disabled="true" type="text" class="form-control" placeholder="Nome"
-                                       ng-model="selectedClient.contato.nome">
+                                       ng-model="selectedClient.contatos[0].nome">
                             </div>
                         </div>
                     </div>
@@ -66,14 +66,14 @@
                     <label class="col-sm-2">Telefone</label>
                     <div class="col-sm-10">
                         <input ng-disabled="true" type="text" class="form-control" placeholder="Numero"
-                               ng-model="selectedClient.contato.telefones[0].numero">
+                               ng-model="selectedClient.contatos[0].telefones[0].numero">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2">Email</label>
                     <div class="col-sm-10">
                         <input ng-disabled="true" type="text" class="form-control" placeholder="Nome"
-                               ng-model="selectedClient.contato.emails[0].email">
+                               ng-model="selectedClient.contatos[0].emails[0].email">
                     </div>
                 </div>
                 <div class="form-group">
@@ -140,11 +140,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" placeholder="Numero"
-                                       ng-model="selectedClient.contato.agrupador.numero">
+                                       ng-model="selectedClient.contatos[0].agrupador.numero">
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" placeholder="nome"
-                                       ng-model="selectedClient.contato.agrupador.nome">
+                                       ng-model="selectedClient.contatos[0].agrupador.nome">
                             </div>
                         </div>
                     </div>
@@ -155,11 +155,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" placeholder="Numero"
-                                       ng-model="selectedClient.contato.numero">
+                                       ng-model="selectedClient.contatos[0].numero">
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" placeholder="Nome"
-                                       ng-model="selectedClient.contato.nome">
+                                       ng-model="selectedClient.contatos[0].nome">
                             </div>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" placeholder="numero"
-                                       ng-model="selectedClient.contato.cargo">
+                                       ng-model="selectedClient.contatos[0].cargo">
                             </div>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="telefone in selectedClient.contato.telefones">
+                            <tr ng-repeat="telefone in selectedClient.contatos[0].telefones">
                                 <td>{{telefone.numero}}</td>
                                 <td ng-click="alterarPrioridade(telefone)">
                                     <div ng-if="telefone.prioritario" class='hidden-sm hidden-xs action-buttons'>
@@ -232,7 +232,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="email in selectedClient.contato.emails">
+                            <tr ng-repeat="email in selectedClient.contatos[0].emails">
                                 <td>{{email.email}}</td>
                                 <td ng-click="alterarPrioridade(email)">
                                     <div ng-if="email.prioritario" class='hidden-sm hidden-xs action-buttons'>
@@ -254,12 +254,6 @@
                 </div>
                 <div class="form-group">
                     <panel title="Contatos" height="40" col="12">
-                        <panel-actions>
-                            <button type="button" class="btn btn-default btn-sm" ng-click="adicionar()"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-default btn-sm" ng-click="remover()"><i
-                                    class="fa fa-minus" aria-hidden="true"></i></button>
-                        </panel-actions>
                         <table class="table table-bordered">
                             <!-- <caption>Monthly Kills</caption> -->
                             <thead>
@@ -272,12 +266,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="contato in cliente.contatos">
-                                <td>{{contato.codigo}}</td>
-                                <td>{{contato.email}}</td>
+                            <tr ng-repeat="contato in selectedClient.contatos">
+                                <td>{{contato.numero}}</td>
+                                <td>{{contato.emails[0].email}}</td>
                                 <td>{{contato.cargo}}</td>
-                                <td>{{contato.email}}</td>
-                                <td>{{contato.prioritario}}</td>
+                                <td>{{contato.telefones[0].numero}}</td>
+                                <td ng-click="alterarPrioridade(contato)">
+                                    <div ng-if="contato.prioritario" class='hidden-sm hidden-xs action-buttons'>
+                                        <a class="green" style="color: green"
+                                           href=""><i class="fa fa-check-circle-o bigger-130"></i></a>
+                                    </div></td>
                             </tr>
                             </tbody>
                         </table>
@@ -285,16 +283,13 @@
                     </panel>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-8 col-sm-4">
+                    <div class="col-sm-offset-9 col-sm-3">
 
-                        <button data-bb-handler="cancel" type="button" class="btn btn-default" ng-click="$ctrl.close()">
+                        <button data-bb-handler="cancel" type="button" class="btn btn-default" ng-click="criarContato()">
                             Criar
                         </button>
-                        <button data-bb-handler="cancel" type="button" class="btn btn-default"
-                                ng-click="salvarContato()">Editar
-                        </button>
                         <button data-bb-handler="confirm" type="button" class="btn btn-primary"
-                                ng-click="salvarContato(objeto)">Salvar
+                                ng-click="close()">Salvar
                         </button>
                     </div>
                 </div>
