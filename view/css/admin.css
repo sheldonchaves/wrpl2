@@ -468,7 +468,7 @@ input[type=checkbox]:checked + label {
     user-select: none;
 }
 
-input[type=checkbox] {
+.client-class input[type=checkbox] {
     display: none;
 }
 
