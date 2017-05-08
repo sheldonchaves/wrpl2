@@ -47,7 +47,7 @@ angular.module("App.controllers", [])
         ];
         $rootScope.pontuais = [{
             id: 0,
-            data: '03.04.2017 - 09:36:45',
+            data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
             user : {
                 nome: "PAULA HERMANN",
@@ -55,7 +55,7 @@ angular.module("App.controllers", [])
             }
         }, {
             id: 1,
-            data: '03.04.2017 - 10:36:45',
+            data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
             user : {
                 nome: "PAULA HERMANN",
@@ -63,7 +63,7 @@ angular.module("App.controllers", [])
             }
         }, {
             id: 2,
-            data: '03.04.2017 - 11:36:45',
+            data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
             user : {
                 nome: "PAULA HERMANN",
@@ -71,7 +71,7 @@ angular.module("App.controllers", [])
             }
         }, {
             id: 3,
-            data: '03.04.2017 - 12:36:45',
+            data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
             user : {
                 nome: "PAULA HERMANN",
@@ -767,21 +767,21 @@ angular.module("App.controllers", [])
         $rootScope.contatos = [
             {
                 id: 1,
-                data: "14.04.17 - 17:30",
+                data: "14.04.17",
                 descricao: "0000456456",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
                 id: 2,
-                data: "14.04.17 - 17:30",
+                data: "14.04.17",
                 descricao: "0000456457",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
                 id: 3,
-                data: "20.04.17 - 17:30",
+                data: "20.04.17",
                 descricao: "0000456458",
                 emissor: 564654,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
@@ -792,21 +792,21 @@ angular.module("App.controllers", [])
         $rootScope.contatos2 = [
             {
                 id: 1,
-                data: "14.04.17 - 22:30",
+                data: "14.04.17",
                 descricao: "11111456456",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
                 id: 2,
-                data: "14.04.17 - 22:30",
+                data: "14.04.17",
                 descricao: "1111456457",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
                 id: 3,
-                data: "20.04.17 - 22:30",
+                data: "20.04.17",
                 descricao: "1111456458",
                 emissor: 564654,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
@@ -817,21 +817,21 @@ angular.module("App.controllers", [])
         $rootScope.contatos1 = [
             {
                 id: 1,
-                data: "14.04.17 - 17:30",
+                data: "14.04.17",
                 descricao: "0000456456",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
                 id: 2,
-                data: "14.04.17 - 17:30",
+                data: "14.04.17",
                 descricao: "0000456457",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
                 id: 3,
-                data: "20.04.17 - 17:30",
+                data: "20.04.17",
                 descricao: "0000456458",
                 emissor: 564654,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"

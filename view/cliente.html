@@ -110,7 +110,7 @@
                 <tbody>
                 <tr ng-repeat="contato in contatos |filter:filtro3" ng-click="editarContatos(contato)">
                     <td>{{contato.id}}</td>
-                    <td>{{contato.data | date:'dd.MM.yyyy' }}</td>
+                    <td>{{contato.data | date:'dd.MM.yy' }}</td>
                     <td>{{contato.descricao}}</td>
                     <td>{{contato.emissor}}</td>
                 </tr>
@@ -243,7 +243,7 @@
                                 style="margin-top: -10px;" ng-click="removePontual(pontual)">×
                         </button>
                         <span class="text">{{pontual.texto}}</span>
-                        <div class="date">{{pontual.data | date:'dd.MM.yyyy HH:mm:ss'}}</div><div class="noteuser">{{pontual.user.abreviado}}</div>
+                        <div class="date">{{pontual.data | date:'dd.MM.yyyy'}}</div><div class="noteuser">{{pontual.user.abreviado}}</div>
                     </li>
                 </ul>
             </div>
