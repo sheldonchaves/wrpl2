@@ -47,58 +47,76 @@
     </panel>
     <panel title="Últimos Processos" icon="fa-bookmark" height="40" col="3">
         <panel-actions>
+            <button type="button" class="btn btn-sm" ng-click="atualizarProcesso()"><i
+                    class="fa fa-refresh" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-sm" ng-click="excelProcessos()"><i
+                    class="fa fa-file-excel-o" aria-hidden="true"></i></button>
         </panel-actions>
-        <table class="table table-hover">
-            <!-- <caption>Monthly Kills</caption> -->
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Data/hora</th>
-                <th>Cliente</th>
-                <th>Processo</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <!-- <td contenteditable="true">12</td> -->
-                <td>1</td>
-                <td>14.04.17</td>
-                <td>Carrefour</td>
-                <td>423476</td>
-                <td>Em processamento</td>
-            </tr>
-            <tr>
-                <!-- <td contenteditable="true">12</td> -->
-                <td>1</td>
-                <td>20.04.17</td>
-                <td>Carrefour</td>
-                <td>564654</td>
-                <td>Encerrado</td>
-            </tr>
-            </tbody>
-        </table>
+        <div id="exportableProcessos">
+            <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"
+                                                                          aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="busca processos" aria-describedby="sizing-addon1"
+                       ng-model="filtro2">
+            </div>
+            <table class="table table-hover">
+                <!-- <caption>Monthly Kills</caption> -->
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Data/hora</th>
+                    <th>Cliente</th>
+                    <th>Processo</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="processo in processos | filter:filtro2">
+                    <!-- <td contenteditable="true">12</td> -->
+                    <td>{{processo.id}}</td>
+                    <td>{{processo.data}}</td>
+                    <td>{{processo.cliente}}</td>
+                    <td>{{processo.processo}}</td>
+                    <td>{{processo.status}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </panel>
     <panel title="Últimos Contatos" icon="fa-bookmark" height="40" col="3">
-        <table class="table table-hover">
-            <!-- <caption>Monthly Kills</caption> -->
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Data</th>
-                <th>Descricao</th>
-                <th>Emissor</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="contato in contatos" ng-click="editarContatos(contato)">
-                <td>{{contato.id}}</td>
-                <td>{{contato.data | date:'dd.MM.yyyy' }}</td>
-                <td>{{contato.descricao}}</td>
-                <td>{{contato.emissor}}</td>
-            </tr>
-            </tbody>
-        </table>
+        <panel-actions>
+            <button type="button" class="btn btn-sm" ng-click="atualizarContatoss()"><i
+                    class="fa fa-refresh" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-sm" ng-click="excelContatos()"><i
+                    class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+        </panel-actions>
+        <div id="exportableContatos">
+            <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-search"
+                                                                          aria-hidden="true"></i></span>
+                <input type="text" class="form-control" placeholder="busca contatos" aria-describedby="sizing-addon1"
+                       ng-model="filtro3">
+            </div>
+            <table class="table table-hover">
+                <!-- <caption>Monthly Kills</caption> -->
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Data</th>
+                    <th>Descricao</th>
+                    <th>Emissor</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="contato in contatos |filter:filtro3" ng-click="editarContatos(contato)">
+                    <td>{{contato.id}}</td>
+                    <td>{{contato.data | date:'dd.MM.yyyy' }}</td>
+                    <td>{{contato.descricao}}</td>
+                    <td>{{contato.emissor}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </panel>
 </div>
 <div class="row">
@@ -155,7 +173,8 @@
                            ng-model="filtro">
                 </div>
             </div>
-        </div></br>
+        </div>
+        </br>
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-hover">
@@ -219,8 +238,12 @@
                 </h3>
                 <ul class="notes" ng-repeat="pontual in pontuais">
                     <li>
+                        <button type="button" class="bootbox-close-button close white" data-dismiss="modal"
+                                aria-hidden="true"
+                                style="margin-top: -10px;" ng-click="removePontual(pontual)">×
+                        </button>
                         <span class="text">{{pontual.texto}}</span>
-                        <span class="date">{{pontual.data | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+                        <span class="date">{{pontual.data | date:'dd.MM.yyyy HH:mm:ss'}} - {{pontual.user.abreviado}}</span>
                     </li>
                 </ul>
             </div>

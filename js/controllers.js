@@ -48,21 +48,57 @@ angular.module("App.controllers", [])
         $rootScope.pontuais = [{
             id: 0,
             data: '03.04.2017 - 09:36:45',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
+            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+            user : {
+                nome: "PAULA HERMANN",
+                abreviado: "PHERMANN"
+            }
         }, {
             id: 1,
-            data: '03.04.2017 - 09:36:45',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
+            data: '03.04.2017 - 10:36:45',
+            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+            user : {
+                nome: "PAULA HERMANN",
+                abreviado: "PHERMANN"
+            }
         }, {
             id: 2,
-            data: '03.04.2017 - 09:36:45',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
+            data: '03.04.2017 - 11:36:45',
+            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+            user : {
+                nome: "PAULA HERMANN",
+                abreviado: "PHERMANN"
+            }
         }, {
             id: 3,
-            data: '03.04.2017 - 09:36:45',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
+            data: '03.04.2017 - 12:36:45',
+            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+            user : {
+                nome: "PAULA HERMANN",
+                abreviado: "PHERMANN"
+            }
         }
         ];
+
+
+        $scope.excelContatos = function () {
+            var blob = new Blob([document.getElementById('exportableContatos').innerHTML], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            });
+            saveAs(blob, "Contatos.xls");
+        };
+
+        $scope.excelProcessos = function () {
+            var blob = new Blob([document.getElementById('exportableProcessos').innerHTML], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            });
+            saveAs(blob, "Processos.xls");
+        };
+
+        $rootScope.user = {
+            nome: "PAULA HERMANN",
+            abreviado: "PHERMANN"
+        }
 
         function init() {
             if ($rootScope.selectedClient == null) {
@@ -121,6 +157,53 @@ angular.module("App.controllers", [])
                 size: "lg",
             });
         };
+
+        $scope.filtro2 = "";
+        $scope.filtro3 = "";
+
+        $scope.lastProcesso = 0;
+        $scope.atualizarProcesso = function () {
+            $scope.filtro2 = "";
+            switch($scope.lastProcesso) {
+                case 0:
+                    $rootScope.processos = $rootScope.processos1;
+                    $scope.lastProcesso = 1;
+                    break;
+                case 1:
+                    $rootScope.processos = $rootScope.processos2;
+                    $scope.lastProcesso = 2;
+                    break;
+                case 2:
+                    $rootScope.processos = $rootScope.processos3;
+                    $scope.lastProcesso = 0;
+                    break;
+                default:
+                    $rootScope.processos = $rootScope.processos;
+            }
+
+        };
+
+        $scope.lastContato = 0;
+        $scope.atualizarContatoss = function () {
+            $scope.filtro3 = "";
+            switch($scope.lastContato) {
+                case 0:
+                    $rootScope.contatos = $rootScope.contatos2;
+                    $scope.lastContato = 1;
+                    break;
+                case 1:
+                    $rootScope.contatos = $rootScope.contatos1;
+                    $scope.lastContato = 0;
+                    break;
+                default:
+                    $rootScope.contatos = $rootScope.contatos1;
+            }
+
+        };
+
+        $scope.removePontual = function (pontual) {
+            $rootScope.pontuais = _.without($rootScope.pontuais, _.findWhere($rootScope.pontuais, {id: pontual.id}));
+        }
 
         $scope.gotoDev = function () {
             $location.path("/dev");
@@ -343,6 +426,8 @@ angular.module("App.controllers", [])
 
         $scope.adicionarPontualNaLista = function (pontual) {
             $uibModalInstance.close();
+            pontual.id = $rootScope.pontuais.length + 1;
+            pontual.user = $rootScope.user;
             $rootScope.pontuais.unshift(pontual);
         };
     })
@@ -660,11 +745,76 @@ angular.module("App.controllers", [])
         $rootScope.currentRoute = "/home";
 
         $rootScope.processos = [
-            {id: 1, data: "14.04.17 - 17:30", cliente: "Carrefour", processo: 423476, status: "Em processamento"},
-            {id: 1, data: "20.04.17 - 17:30", cliente: "Carrefour", processo: 564654, status: "Encerrado"}
+            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
+            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
+        ];
+
+        $rootScope.processos1 = [
+            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Em processamento"},
+            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Cancelado"}
+        ];
+
+        $rootScope.processos2 = [
+            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Finalizado"},
+            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Encerrado"}
+        ];
+
+        $rootScope.processos3 = [
+            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
+            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
         ];
 
         $rootScope.contatos = [
+            {
+                id: 1,
+                data: "14.04.17 - 17:30",
+                descricao: "0000456456",
+                emissor: 423476,
+                status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
+            },
+            {
+                id: 2,
+                data: "14.04.17 - 17:30",
+                descricao: "0000456457",
+                emissor: 423476,
+                status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
+            },
+            {
+                id: 3,
+                data: "20.04.17 - 17:30",
+                descricao: "0000456458",
+                emissor: 564654,
+                status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
+            }
+
+        ];
+
+        $rootScope.contatos2 = [
+            {
+                id: 1,
+                data: "14.04.17 - 22:30",
+                descricao: "11111456456",
+                emissor: 423476,
+                status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
+            },
+            {
+                id: 2,
+                data: "14.04.17 - 22:30",
+                descricao: "1111456457",
+                emissor: 423476,
+                status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
+            },
+            {
+                id: 3,
+                data: "20.04.17 - 22:30",
+                descricao: "1111456458",
+                emissor: 564654,
+                status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
+            }
+
+        ];
+
+        $rootScope.contatos1 = [
             {
                 id: 1,
                 data: "14.04.17 - 17:30",
