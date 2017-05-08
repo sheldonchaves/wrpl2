@@ -82,6 +82,16 @@
                 </ul>
             </div>
         </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search"
+                                                                          aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" placeholder="busca players" aria-describedby="sizing-addon1"
+                               ng-model="filtro">
+                    </div>
+                </div>
+            </div></br>
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-hover">
@@ -95,7 +105,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="produto in linhaBranca">
+                        <tr ng-repeat="produto in linhaBranca | filter:filtro">
                             <td>{{produto.id}}</td>
                             <td>{{produto.nome}}</td>
                             <td>{{produto.quantidade}}</td>
@@ -116,7 +126,6 @@
                         <tr>
                             <th>#</th>
                             <th>Conc. Revenda</th>
-                            <th>%</th>
                             <th><button type="button" class="btn btn-success btn-sm note-plus" ng-click="editarConcorrenteRevenda()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></th>
                         </tr>
                     </thead>
@@ -124,7 +133,6 @@
                        <tr ng-repeat="produto in concorrentesRevenda">
                             <td>{{produto.id}}</td>
                             <td>{{produto.nome}}</td>
-                            <td>{{produto.quantidade}}</td>
                             <td>
                                 <div class='action-buttons'>
                                 <a class="blue" style="color: blue" ng-click="editarConcorrenteRevenda(produto)" href=""><i class="fa fa-pencil bigger-130"></i></a>

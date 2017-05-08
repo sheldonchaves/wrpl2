@@ -567,3 +567,14 @@ input[type=checkbox]:checked + label:before {
 .white {
     color:white;
 }
+
+ul.sub_navigation {
+    position: relative;
+    float: left;
+    list-style: none;
+}
+ul.sub_navigation li {
+    clear: none;
+    float: left;
+    width: auto;
+}

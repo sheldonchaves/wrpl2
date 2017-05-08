@@ -63,15 +63,23 @@
             </div>
             <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">CARREFOUR</a></li>
+                    <li><a href="#">{{selectedClient.razao}}</a></li>
                     <li><a ng-click="gotoCliente()" href="">Trocar de Cliente</a></li>
-                    <li uib-dropdown class="dropdown">
-                        <a href uib-dropdown-toggle>SAP<b class="caret"></b></a>
-                            <ul uib-dropdown-menu ng-repeat="categoria in categoriaLinks">
-                                <li><a href="">{{categoria.nome}}</a></li>
-                            </ul>
-                        
-                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">SAP <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="#">More options</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Second level link</a></li>
+                                    <li><a href="#">Second level link</a></li>
+                                    <li><a href="#">Second level link</a></li>
+                                    <li><a href="#">Second level link</a></li>
+                                    <li><a href="#">Second level link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li uib-dropdown class="dropdown">
