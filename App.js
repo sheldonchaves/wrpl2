@@ -8,7 +8,8 @@ angular.module('App', ["App.controllers",
     'ngCsv', 
     'ngAnimate', 
     'ngSanitize',
-    'gridshore.c3js.chart'
+    'gridshore.c3js.chart',
+    'oitozero.ngSweetAlert'
     
 
 

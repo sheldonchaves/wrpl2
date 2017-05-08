@@ -138,6 +138,9 @@ angular.module("App.controllers", [])
         $scope.bloqueiaCNPJ = false;
         $scope.bloqueiaEmail = false;
         $scope.bloqueiaId = false;
+        $scope.buscaEmail = "";
+        $scope.buscaCnpj = "";
+        $scope.buscaId = "";
 
         $scope.selectClient = function (client) {
             //console.log("selectClient() " + client);
@@ -148,13 +151,13 @@ angular.module("App.controllers", [])
         };
 
         $scope.bloqueiaBusca = function () {
-            if(!!buscaEmail){
+            if($scope.buscaEmail != ""){
                 $scope.bloqueiaCNPJ = true;
                 $scope.bloqueiaId = true;
-            }else if(!!buscaCnpj){
+            }else if($scope.buscaCnpj != ""){
                 $scope.bloqueiaEmail = true;
                 $scope.bloqueiaId = true;
-            }else if(!!buscaId){
+            }else if($scope.buscaId != ""){
                 $scope.bloqueiaCNPJ = true;
                 $scope.bloqueiaEmail = true;
             }else{
@@ -166,7 +169,6 @@ angular.module("App.controllers", [])
 
         $scope.goCliente = function () {
             $uibModalInstance.close();
-
         };
 
     })
@@ -324,7 +326,7 @@ angular.module("App.controllers", [])
             $rootScope.pontuais.unshift(pontual);
         };
     })
-    .controller("ModalInstanceCtrl", function ($scope, $rootScope, $uibModalInstance, $uibModal) {
+    .controller("ModalInstanceCtrl", function ($scope, $rootScope, $uibModalInstance, $uibModal, SweetAlert) {
         "use strict";
         $scope.close = function () {
             $uibModalInstance.close();
@@ -359,7 +361,32 @@ angular.module("App.controllers", [])
         };
 
         $scope.removerEmail = function (email) {
-            $rootScope.selectedClient.contatos[0].emails = _.without($rootScope.selectedClient.contatos[0].emails, _.findWhere($rootScope.selectedClient.contatos[0].emails, {id: email.id}));
+            var alertExclusao = {
+                title: "Exclusão de email",
+                text: "Tem certeza que gostaria de excluir esse email?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sim, excluir!",
+                closeOnConfirm: false,
+                closeOnCancel: true,
+                showLoaderOnConfirm: true
+            };
+            SweetAlert.swal(
+                alertExclusao, function (isConfirm) {
+                    if (isConfirm) {
+                        $rootScope.selectedClient.contatos[0].emails = _.without($rootScope.selectedClient.contatos[0].emails, _.findWhere($rootScope.selectedClient.contatos[0].emails, {id: email.id}));
+                            SweetAlert.swal('Email excluído com sucesso.');
+
+                    } else {
+                        return;
+                    }
+
+                }
+            );
+
+
+
         };
 
         $scope.removerTelefone = function (telefone) {
