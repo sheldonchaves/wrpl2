@@ -292,25 +292,38 @@ p {
 
 .notes li {
     margin: 10px 0;
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
-    background: linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25));
-    background-color: #FFFD75;
+    background-color: white;
     box-shadow: 5px 5px 13px -2px rgba(33, 33, 33, 0.2);
 }
 
 .notes li .text {
     padding: 10px;
     display: block;
+    box-shadow: -6px -2px 10px 2px rgba(33, 33, 33, 0.2);
 }
 
 .notes li .date {
-    display: block;
-    background: rgba(0, 0, 0, .2);
+    display: inline;
+    float:left;
+    width:50%;
+    background-color: #1b6d85;
     padding: 2px 5px;
     font-size: 12px;
     color: #fff;
     text-align: center;
 }
+
+.notes li .noteuser {
+    display: inline;
+    width:50%;
+    float:left;
+    background-color: #078573;
+    padding: 2px 5px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+}
+
 
 .notes li button {
     -webkit-appearance: none;
@@ -520,7 +533,7 @@ background-color: #FFFD75
 }
 
 input[type=checkbox]:checked + label {
-    color: #000;
+    color: #FF9800;
     user-select: none;
 }
 
@@ -583,27 +596,28 @@ input[type=checkbox]:checked + label:before {
 .slide .title {
     display: block;
     padding: 10px 0;
-    color: #fff;
+    color: orange;
     font-weight: 600;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(231, 228, 233)
 }
 
 .slide .text {
     padding: 5px;
     margin-top: 10px;
     display: block;
+    background: white
 }
 
 .slide:nth-child(1) {
-    background: #7DBEB8;
+    background: white;
 }
 
 .slide:nth-child(2) {
-    background: #B4DEC1;
+    background: white;
 }
 
 .slide:nth-child(3) {
-    background: #F7E4BE;
+    background: white;
 }
 
 .note-plus {

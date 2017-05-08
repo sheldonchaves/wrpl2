@@ -1,7 +1,7 @@
 <div class="row">
     <panel title="Dados Revenda" icon="fa-user" height="40" col="6">
         <panel-actions>
-            <button type="button" class="btn btn-default btn-sm" ng-click="editarDadosCliente()"><i
+            <button type="button" class="btn btn-warning btn-sm" ng-click="editarDadosCliente()"><i
                     class="fa fa-arrows-alt" aria-hidden="true"></i></button>
         </panel-actions>
         <div class="row">
@@ -15,12 +15,12 @@
                     <dd class="ng-binding">{{selectedClient.contatos[0].telefones[0].numero}}</dd>
                     <dt class="ng-binding">Cidade</dt>
                     <dd class="ng-binding">{{selectedClient.cidade}}</dd>
-                    <dt class="ng-binding">Agrupador</dt>
-                    <dd class="ng-binding">{{selectedClient.contatos[0].agrupador.numero}}</dd>
+                    <dt class="ng-binding" style="color: orange">Agrupador</dt>
+                    <dd class="ng-binding" style="color: orange">{{selectedClient.contatos[0].agrupador.numero}}</dd>
                     <dt>CNPJ</dt>
                     <dd class="ng-binding">{{selectedClient.cnpj}}</dd>
-                    <dt>Supervisor</dt>
-                    <dd class="ng-binding">{{selectedClient.contatos[0].supervisor.numero}}</dd>
+                    <dt style="color: orange">Supervisor</dt>
+                    <dd style="color: orange" class="ng-binding">{{selectedClient.contatos[0].supervisor.numero}}</dd>
                     <dt>Email</dt>
                     <dd class="ng-binding">{{selectedClient.contatos[0].emails[0].email}}</dd>
                 </dl>
@@ -36,11 +36,11 @@
                     <dt>UF</dt>
                     <dd class="ng-binding">{{selectedClient.uf}}</dd>
                     <dt>Nome</dt>
-                    <dd class="ng-binding">{{selectedClient.contatos[0].agrupador.nome}}</dd>
-                    <dt>Telefone</dt>
+                    <dd class="ng-binding" style="color: orange">{{selectedClient.contatos[0].agrupador.nome}}</dd>
+                    <dt>Telefone</dt >
                     <dd class="ng-binding">{{selectedClient.contatos[0].telefones[0].numero}}</dd>
 
-                    <dd class="ng-binding">{{selectedClient.contatos[0].supervisor.nome}}</dd>
+                    <dd  style="color: orange" class="ng-binding">{{selectedClient.contatos[0].supervisor.nome}}</dd>
                 </dl>
             </div>
         </div>
@@ -224,7 +224,7 @@
                 <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
                     <div uib-slide ng-repeat="geral in gerais track by geral.id" index="geral.id"
                          class="slide animated">
-                        <span ng-show="mostra" class="title">{{geral.titulo}}</span>
+                        <span class="title">{{geral.titulo}}</span>
                         <span ng-show="mostra" class="text">{{geral.texto}}</span>
                         <textarea ng-show="!mostra" ng-model="geral.texto" cols="30" rows="20"></textarea>
                     </div>
@@ -243,7 +243,7 @@
                                 style="margin-top: -10px;" ng-click="removePontual(pontual)">×
                         </button>
                         <span class="text">{{pontual.texto}}</span>
-                        <span class="date">{{pontual.data | date:'dd.MM.yyyy HH:mm:ss'}} - {{pontual.user.abreviado}}</span>
+                        <div class="date">{{pontual.data | date:'dd.MM.yyyy HH:mm:ss'}}</div><div class="noteuser">{{pontual.user.abreviado}}</div>
                     </li>
                 </ul>
             </div>
