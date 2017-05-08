@@ -135,6 +135,9 @@ angular.module("App.controllers", [])
     .controller("ModalSelecionarClienteCtrl", function ($scope, $rootScope, $location, $uibModalInstance, $timeout) {
         "use strict";
 
+        $scope.bloqueiaCNPJ = false;
+        $scope.bloqueiaEmail = false;
+        $scope.bloqueiaId = false;
 
         $scope.selectClient = function (client) {
             //console.log("selectClient() " + client);
@@ -143,6 +146,23 @@ angular.module("App.controllers", [])
             $rootScope.selectedClient = client;
             $location.path("/cliente");
         };
+
+        $scope.bloqueiaBusca = function () {
+            if(!!buscaEmail){
+                $scope.bloqueiaCNPJ = true;
+                $scope.bloqueiaId = true;
+            }else if(!!buscaCnpj){
+                $scope.bloqueiaEmail = true;
+                $scope.bloqueiaId = true;
+            }else if(!!buscaId){
+                $scope.bloqueiaCNPJ = true;
+                $scope.bloqueiaEmail = true;
+            }else{
+                $scope.bloqueiaCNPJ = false;
+                $scope.bloqueiaEmail = false;
+                $scope.bloqueiaId = false;
+            }
+        }
 
         $scope.goCliente = function () {
             $uibModalInstance.close();
@@ -233,7 +253,8 @@ angular.module("App.controllers", [])
         };
 
         $scope.adicionarConcorrente = function (contato) {
-            if (!!contato.id) {
+            if (contato.id != null && contato.id != undefined) {
+                contato.quantidade = contato.quantidade + '%';
                 $uibModalInstance.close();
             } else {
                 contato.id = $rootScope.contatos.length;
@@ -245,7 +266,8 @@ angular.module("App.controllers", [])
         };
 
         $scope.adicionarLinha = function (contato) {
-            if (!!contato.id) {
+            if (contato.id != null && contato.id != undefined) {
+                contato.quantidade = contato.quantidade + '%';
                 $uibModalInstance.close();
             } else {
                 contato.id = $rootScope.contatos.length;

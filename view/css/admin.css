@@ -559,3 +559,11 @@ input[type=checkbox]:checked + label:before {
 .carousel-control{
     opacity: .2;
 }
+
+.close {
+    opacity: .8;
+}
+
+.white {
+    color:white;
+}
