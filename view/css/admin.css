@@ -698,9 +698,11 @@ span.glyphicon.glyphicon-chevron-left {
 .carousel-control.right {
     margin-top: 35px;
     width : 40px;
+    height: 200px;
 }
 
 .carousel-control.left {
     margin-top: 35px;
     width : 40px;
+    height: 200 px;
 }

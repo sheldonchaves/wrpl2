@@ -253,6 +253,67 @@ angular.module("App.controllers", [])
             $rootScope.selectedClient.revenda.tos.total = parseInt($rootScope.selectedClient.revenda.tos.refrigerador) + parseInt($rootScope.selectedClient.revenda.tos.lavadora) + parseInt($rootScope.selectedClient.revenda.tos.fogao);
         }
 
+        $scope.editarLinhaBranca = function (produto) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/editar-linhaBranca.html',
+                controller: 'ModalProdutoCtrl',
+                resolve: {
+                    produto: function () {
+                        return produto;
+                    }
+                }
+            });
+        };
+
+        $scope.removerLinhaBranca = function (produto) {
+            $rootScope.linhaBranca = _.without($rootScope.linhaBranca, _.findWhere($rootScope.linhaBranca, {id: produto.id}));
+        };
+
+        $scope.adicionarLinhaBranca = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/editar-linhaBranca.html',
+                controller: 'ModalProdutoCtrl',
+                resolve: {
+                    produto: function () {
+                        return "";
+                    }
+                }
+            });
+        };
+
+        $scope.editarConcorrenteRevenda = function (produto) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/editar-concorrente.html',
+                controller: 'ModalProdutoCtrl',
+                resolve: {
+                    produto: function () {
+                        return produto;
+                    }
+                }
+            });
+        };
+
+        $scope.removerConcorrenteRevenda = function (produto) {
+            $rootScope.concorrentesRevenda = _.without($rootScope.concorrentesRevenda, _.findWhere($rootScope.concorrentesRevenda, {id: produto.id}));
+        };
+
+        $scope.adicionarConcorrenteRevenda = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/editar-concorrente.html',
+                controller: 'ModalProdutoCtrl',
+                resolve: {
+                    produto: function () {
+                        return "";
+                    }
+                }
+            });
+        };
+
+
     })
     .controller("CaminhoCtrl", function ($scope, $rootScope, $uibModal) {
 
@@ -327,66 +388,6 @@ angular.module("App.controllers", [])
             $uibModalInstance.close();
         };
 
-
-        $scope.editarLinhaBranca = function (produto) {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: './view/editar-linhaBranca.html',
-                controller: 'ModalProdutoCtrl',
-                resolve: {
-                    produto: function () {
-                        return produto;
-                    }
-                }
-            });
-        };
-
-        $scope.removerLinhaBranca = function (produto) {
-            $rootScope.linhaBranca = _.without($rootScope.linhaBranca, _.findWhere($rootScope.linhaBranca, {id: produto.id}));
-        };
-
-        $scope.adicionarLinhaBranca = function () {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: './view/editar-linhaBranca.html',
-                controller: 'ModalProdutoCtrl',
-                resolve: {
-                    produto: function () {
-                        return "";
-                    }
-                }
-            });
-        };
-
-        $scope.editarConcorrenteRevenda = function (produto) {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: './view/editar-concorrente.html',
-                controller: 'ModalProdutoCtrl',
-                resolve: {
-                    produto: function () {
-                        return produto;
-                    }
-                }
-            });
-        };
-
-        $scope.removerConcorrenteRevenda = function (produto) {
-            $rootScope.concorrentesRevenda = _.without($rootScope.concorrentesRevenda, _.findWhere($rootScope.concorrentesRevenda, {id: produto.id}));
-        };
-
-        $scope.adicionarConcorrenteRevenda = function () {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: './view/editar-concorrente.html',
-                controller: 'ModalProdutoCtrl',
-                resolve: {
-                    produto: function () {
-                        return "";
-                    }
-                }
-            });
-        };
 
         $scope.adicionarPontualNaLista = function (pontual) {
             $uibModalInstance.close();
