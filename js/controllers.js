@@ -1,6 +1,6 @@
 angular.module("App.controllers", [])
     .constant('_', _)
-    .controller("HomeController", function ($scope, $rootScope, $location) {
+    .controller("HomeController", function ($scope, $rootScope, $location, $uibModal) {
         "use strict";
 
 
@@ -31,6 +31,14 @@ angular.module("App.controllers", [])
     })
     .controller("ClienteController", function ($scope, $rootScope, $location, $uibModal) {
         "use strict";
+
+        $scope.active = 0;
+        $scope.filtro2 = "";
+        $scope.filtro3 = "";
+        $scope.lastProcesso = 0;
+        $scope.lastContato = 0;
+        $scope.isBlocked = true;
+
         $scope.gerais = [{
             id: 0,
             titulo: 'Comportamento',
@@ -45,11 +53,12 @@ angular.module("App.controllers", [])
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
         }
         ];
+
         $rootScope.pontuais = [{
             id: 0,
             data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user : {
+            user: {
                 nome: "PAULA HERMANN",
                 abreviado: "PHERMANN"
             }
@@ -57,7 +66,7 @@ angular.module("App.controllers", [])
             id: 1,
             data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user : {
+            user: {
                 nome: "PAULA HERMANN",
                 abreviado: "PHERMANN"
             }
@@ -65,7 +74,7 @@ angular.module("App.controllers", [])
             id: 2,
             data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user : {
+            user: {
                 nome: "PAULA HERMANN",
                 abreviado: "PHERMANN"
             }
@@ -73,13 +82,47 @@ angular.module("App.controllers", [])
             id: 3,
             data: '03.04.2017',
             texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user : {
+            user: {
                 nome: "PAULA HERMANN",
                 abreviado: "PHERMANN"
             }
         }
         ];
 
+        $scope.gridOptions = {
+            data: 'contatos',
+            columnDefs: [{
+                field: 'id',
+                displayName: 'Id',
+                cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
+            }, {
+                field: 'data',
+                displayName: 'Data',
+                cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
+            }, {
+                field: 'descricao',
+                displayName: 'Descrição',
+                cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
+            }, {
+                field: 'emissor',
+                displayName: 'Emissor',
+                cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
+            }, {
+                field: 'status',
+                displayName: 'Status',
+                cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
+            }
+
+            ]
+        };
+
+        $scope.teste = function () {
+            if($scope.active == 0 || $scope.active == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
         $scope.excelContatos = function () {
             var blob = new Blob([document.getElementById('exportableContatos').innerHTML], {
@@ -107,6 +150,7 @@ angular.module("App.controllers", [])
                     animation: true,
                     templateUrl: './view/selecionar-cliente.html',
                     controller: 'ModalSelecionarClienteCtrl',
+                    size: "lg",
                     resolve: {
                         items: function () {
                             return "";
@@ -118,6 +162,10 @@ angular.module("App.controllers", [])
         }
 
         init();
+
+        $scope.$watch('active', function(active) {
+            console.log("current value: ", active)
+        });
 
         $scope.adicionarPontual = function () {
             var modalInstance = $uibModal.open({
@@ -140,13 +188,8 @@ angular.module("App.controllers", [])
             });
         };
 
-
         $scope.editarPerfilDeRevenda = function () {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: './view/perfil-revenda.html',
-                controller: 'ModalInstancePerfilDeRevendaCtrl'
-            });
+            $scope.isBlocked = !$scope.isBlocked
         };
 
         $scope.editarDadosCliente = function (cliente) {
@@ -158,13 +201,9 @@ angular.module("App.controllers", [])
             });
         };
 
-        $scope.filtro2 = "";
-        $scope.filtro3 = "";
-
-        $scope.lastProcesso = 0;
         $scope.atualizarProcesso = function () {
             $scope.filtro2 = "";
-            switch($scope.lastProcesso) {
+            switch ($scope.lastProcesso) {
                 case 0:
                     $rootScope.processos = $rootScope.processos1;
                     $scope.lastProcesso = 1;
@@ -183,10 +222,9 @@ angular.module("App.controllers", [])
 
         };
 
-        $scope.lastContato = 0;
         $scope.atualizarContatoss = function () {
             $scope.filtro3 = "";
-            switch($scope.lastContato) {
+            switch ($scope.lastContato) {
                 case 0:
                     $rootScope.contatos = $rootScope.contatos2;
                     $scope.lastContato = 1;
@@ -223,9 +261,9 @@ angular.module("App.controllers", [])
         $scope.bloqueiaEmail = false;
         $scope.bloqueiaId = false;
         $scope.busca = {
-            cnpj:"",
-            id:"",
-            email:""
+            cnpj: "",
+            id: "",
+            email: ""
         };
 
         $scope.close = function () {
@@ -241,16 +279,16 @@ angular.module("App.controllers", [])
         };
 
         $scope.bloqueiaBusca = function () {
-            if($scope.busca.email != ""){
+            if ($scope.busca.email != "") {
                 $scope.bloqueiaCNPJ = true;
                 $scope.bloqueiaId = true;
-            }else if($scope.busca.cnpj != ""){
+            } else if ($scope.busca.cnpj != "") {
                 $scope.bloqueiaEmail = true;
                 $scope.bloqueiaId = true;
-            }else if($scope.busca.id != ""){
+            } else if ($scope.busca.id != "") {
                 $scope.bloqueiaCNPJ = true;
                 $scope.bloqueiaEmail = true;
-            }else{
+            } else {
                 $scope.bloqueiaCNPJ = false;
                 $scope.bloqueiaEmail = false;
                 $scope.bloqueiaId = false;
@@ -260,15 +298,15 @@ angular.module("App.controllers", [])
         $scope.goCliente = function () {
             $uibModalInstance.close();
         };
-        
+
         $scope.buscarCliente = function () {
-            if($scope.busca.email != ""){
-                $rootScope.clientesBuscados = _.where($rootScope.clientes,{ email : $scope.busca.email} );
-            }else if($scope.busca.cnpj != ""){
-                $rootScope.clientesBuscados = _.where($rootScope.clientes,{ cnpj : $scope.busca.cnpj} );
-            }else if($scope.busca.id != ""){
-                $rootScope.clientesBuscados = _.where($rootScope.clientes,{ clienteEmissorId : $scope.busca.id} );
-            }else{
+            if ($scope.busca.email != "") {
+                $rootScope.clientesBuscados = _.where($rootScope.clientes, {email: $scope.busca.email});
+            } else if ($scope.busca.cnpj != "") {
+                $rootScope.clientesBuscados = _.where($rootScope.clientes, {cnpj: $scope.busca.cnpj});
+            } else if ($scope.busca.id != "") {
+                $rootScope.clientesBuscados = _.where($rootScope.clientes, {clienteEmissorId: $scope.busca.id});
+            } else {
                 $rootScope.clientesBuscados = [];
             }
 
@@ -362,7 +400,7 @@ angular.module("App.controllers", [])
             if (contato.id != null && contato.id != undefined) {
                 $uibModalInstance.close();
             } else {
-                contato.id = $rootScope.contatos.length+1;
+                contato.id = $rootScope.contatos.length + 1;
                 contato.quantidade = contato.quantidade + '%';
                 $rootScope.concorrentesRevenda.push(contato);
                 $uibModalInstance.close();
@@ -375,7 +413,7 @@ angular.module("App.controllers", [])
                 contato.quantidade = contato.quantidade + '%';
                 $uibModalInstance.close();
             } else {
-                contato.id = $rootScope.contatos.length+1;
+                contato.id = $rootScope.contatos.length + 1;
                 contato.quantidade = contato.quantidade + '%';
                 $rootScope.linhaBranca.push(contato);
                 $uibModalInstance.close();
@@ -437,6 +475,20 @@ angular.module("App.controllers", [])
             $uibModalInstance.close();
         };
 
+        var gridOptions = {};
+        gridOptions.columnDefs = [
+            {field: 'Contato', displayName: 'ID'},
+            {field: 'Cargo'},
+            {field: 'Telefone', enableSorting: true},
+            {
+                field: 'Prioritário',
+                cellTemplate: '<div ng-if="{{row.value}}" class="ui-grid-cell-contents tooltip-uigrid" title="{{COL_FIELD}}">' +
+                '<a ng-if="" ui-sref="main.placeDetail{{placeId: {{row.entity.id}} }}">{{COL_FIELD CUSTOM_FILTERS}}</a></div>'
+            },
+            {field: 'Email', enableSorting: true},
+            {field: 'Prioritário'}
+        ];
+
         $scope.adicionarTelefone = function (telefone) {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -481,7 +533,7 @@ angular.module("App.controllers", [])
                 alertExclusao, function (isConfirm) {
                     if (isConfirm) {
                         $rootScope.selectedClient.contatos[0].emails = _.without($rootScope.selectedClient.contatos[0].emails, _.findWhere($rootScope.selectedClient.contatos[0].emails, {id: email.id}));
-                            SweetAlert.swal('Email excluído com sucesso.');
+                        SweetAlert.swal('Email excluído com sucesso.');
 
                     } else {
                         return;
@@ -489,7 +541,6 @@ angular.module("App.controllers", [])
 
                 }
             );
-
 
 
         };
@@ -516,16 +567,16 @@ angular.module("App.controllers", [])
         };
 
         $scope.adicionarNovoContato = function (contato) {
-           contato.numero = Math.floor(Math.random() * (99999999 - 10000000 +1)) + 0;
-           if(!!contato.telefones){
-            contato.telefones[0].id = contato.telefones.length;
-           contato.telefones[0].prioritario = false;
-           }
-            if(!!contato.emails){
-           contato.emails[0].id = contato.emails.length;
-           contato.emails[0].prioritario = false;
+            contato.numero = Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 0;
+            if (!!contato.telefones) {
+                contato.telefones[0].id = contato.telefones.length;
+                contato.telefones[0].prioritario = false;
             }
-           $rootScope.selectedClient.contatos.push(contato);
+            if (!!contato.emails) {
+                contato.emails[0].id = contato.emails.length;
+                contato.emails[0].prioritario = false;
+            }
+            $rootScope.selectedClient.contatos.push(contato);
             $uibModalInstance.close();
         };
 
@@ -597,146 +648,152 @@ angular.module("App.controllers", [])
 
         }];
 
-        $rootScope.dadosGraficos =
-            [
-                {"x": "VALORES", "LB": 47, "LM": 36, "OUTROS": 25, "TOS": 37, "MARKUP": 23}
-            ];
-        $rootScope.dadosGraficosColunas =
-            [
-                {"id": "LB", "type": "bar", "name": "LB"},
-                {"id": "LM", "type": "bar", "name": "LM"},
-                {"id": "OUTROS", "type": "bar", "name": "OUTROS"},
-                {"id": "TOS", "type": "bar", "name": "TOS"},
-                {"id": "MARKUP", "type": "bar", "name": "MARKUP"}
-            ];
+        $rootScope.divLink = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/sap-links.html',
+                controller: 'ModalSelecionarClienteCtrl'
+            });
+        }
+
+        $rootScope.dadosGraficos = [
+            {"x": "VALORES", "LB": 47, "LM": 36, "OUTROS": 25, "TOS": 37, "MARKUP": 23}
+        ];
+
+        $rootScope.dadosGraficosColunas = [
+            {"id": "LB", "type": "bar", "name": "LB"},
+            {"id": "LM", "type": "bar", "name": "LM"},
+            {"id": "OUTROS", "type": "bar", "name": "OUTROS"},
+            {"id": "TOS", "type": "bar", "name": "TOS"},
+            {"id": "MARKUP", "type": "bar", "name": "MARKUP"}
+        ];
 
         $rootScope.datax = {"id": "x"};
 
         $rootScope.perfilLoja1 = 0;
+
         $rootScope.perfilLoja2 = 1;
+
         $rootScope.perfilLoja3 = 1;
+
         $rootScope.perfilLoja4 = 0;
 
-        $rootScope.linhaBranca =
-            [
-                {id: 0, nome: "ELECTROLUX", quantidade: "45%"},
-                {id: 1, nome: "PANASONIC", quantidade: "25%"},
-                {id: 2, nome: "SAMSUNG", quantidade: "30%"},
-                {id: 3, nome: "ATLAS", quantidade: "5%"}
+        $rootScope.linhaBranca = [
+            {id: 0, nome: "ELECTROLUX", quantidade: "45%"},
+            {id: 1, nome: "PANASONIC", quantidade: "25%"},
+            {id: 2, nome: "SAMSUNG", quantidade: "30%"},
+            {id: 3, nome: "ATLAS", quantidade: "5%"}
 
-            ];
+        ];
 
-        $rootScope.concorrentesRevenda =
-            [
-                {id: 0, nome: "ELECTROLUX", quantidade: "45%"},
-                {id: 1, nome: "PANASONIC", quantidade: "25%"},
-                {id: 2, nome: "SAMSUNG", quantidade: "30%"},
-                {id: 3, nome: "ATLAS", quantidade: "5%"}
+        $rootScope.concorrentesRevenda = [
+            {id: 0, nome: "ELECTROLUX", quantidade: "45%"},
+            {id: 1, nome: "PANASONIC", quantidade: "25%"},
+            {id: 2, nome: "SAMSUNG", quantidade: "30%"},
+            {id: 3, nome: "ATLAS", quantidade: "5%"}
 
-            ];
+        ];
 
-        $rootScope.categoriaLinks =
-            [
-                {
-                    nome: "Acesso Restrito",
-                    icone: "",
-                    links: [
-                        {
-                            titulo: "ZTLV18 - Administração Menu",
-                            url: ""
-                        },
-                        {
-                            titulo: "ZTLV14 - Cod. De marca e Categoria Mix",
-                            url: ""
-                        },
-                        {
-                            titulo: "ZTLV19 - Cadastro Ação Promo. E Mapa da Mina",
-                            url: ""
-                        }, {
-                            titulo: "ZTLV15 - Texos Fixos - Simulação e OV",
-                            url: ""
-                        }, {titulo: "ZTLV20 - TAB PRE Atribuir Marca e Categ", url: ""}, {
-                            titulo: "ZTLV11 - ZROUTE",
-                            url: ""
-                        }, {
-                            titulo: "ZTABP - Gerar de tabela de Preço",
-                            url: ""
-                        }, {titulo: "ZEXEC - Exceção de materiais - TAB preço", url: ""}]
-                },
-                {
-                    nome: "Cliente",
-                    icone: "",
-                    links: [
-                        {
-                            titulo: "XD03 - Consulta Cadastro Cliente",
-                            url: ""
-                        },
-                        {
-                            titulo: "ZTLV09 -Relação de telefones",
-                            url: ""
-                        }]
-                },
-                {
-                    nome: "Atividades",
-                    icone: "",
-                    links: [{titulo: "ZTLV22 - Criar Providência", url: ""}, {
-                        titulo: "ZC10 - Relatório de atividades",
+        $rootScope.categoriaLinks = [
+            {
+                nome: "Acesso Restrito",
+                icone: "",
+                links: [
+                    {
+                        titulo: "ZTLV18 - Administração Menu",
                         url: ""
-                    }, {titulo: "MM03 - Cadastro de Produto", url: ""}]
-                },
-                {
-                    nome: "Estoque",
-                    icone: "",
-                    links: [{titulo: "ZVSCE17 - Sintese de Estoque", url: ""}, {
-                        titulo: "ZMBE - Consulta Estoque",
+                    },
+                    {
+                        titulo: "ZTLV14 - Cod. De marca e Categoria Mix",
+                        url: ""
+                    },
+                    {
+                        titulo: "ZTLV19 - Cadastro Ação Promo. E Mapa da Mina",
+                        url: ""
+                    }, {
+                        titulo: "ZTLV15 - Texos Fixos - Simulação e OV",
+                        url: ""
+                    }, {titulo: "ZTLV20 - TAB PRE Atribuir Marca e Categ", url: ""}, {
+                        titulo: "ZTLV11 - ZROUTE",
+                        url: ""
+                    }, {
+                        titulo: "ZTABP - Gerar de tabela de Preço",
+                        url: ""
+                    }, {titulo: "ZEXEC - Exceção de materiais - TAB preço", url: ""}]
+            },
+            {
+                nome: "Cliente",
+                icone: "",
+                links: [
+                    {
+                        titulo: "XD03 - Consulta Cadastro Cliente",
+                        url: ""
+                    },
+                    {
+                        titulo: "ZTLV09 -Relação de telefones",
                         url: ""
                     }]
-                },
-                {
-                    nome: "Ordem/NF",
-                    icone: "",
-                    links: [{titulo: "ZV20 - Lista Ordem", url: ""}, {
-                        titulo: "ZV40 - Lista Ordem Orig.",
-                        url: ""
-                    }, {titulo: "VA01 - Criar Ordem R3", url: ""}, {
-                        titulo: "VA02 - Alterar Ordem R3",
-                        url: ""
-                    }, {titulo: "ZVC16 - Ordens Faturadas", url: ""}, {
-                        titulo: "ZSTR14 - Posição de Entrega",
-                        url: ""
-                    }, {titulo: "J1B3N - Exibir NF", url: ""}, {
-                        titulo: "ZSTR52 - Rel de ocorrências",
-                        url: ""
-                    }, {titulo: "ZSER - Consulta nº série do Produto", url: ""}]
-                },
-                {nome: "Meta/Var", icone: "", links: [{titulo: "ZV57 - Informações Gerenciais", url: ""}]},
-                {
-                    nome: "Cred/Cob",
-                    icone: "",
-                    links: [{
-                        titulo: "FBL6N - Partidas Individuais",
-                        url: ""
-                    }, {titulo: "ZFI46 - Crédito do Cliente - Média ", url: ""}, {
-                        titulo: "FD33 - Crédito do Cliente",
-                        url: ""
-                    }, {titulo: "ZFE15 - Rel. Fretes Contas RE", url: ""}]
-                },
-                {
-                    nome: "Verbas",
-                    icone: "",
-                    links: [{titulo: "CJ37 - Empenho da verbas", url: ""}, {
-                        titulo: "CJ30 - 1º Empenho na Campanha",
-                        url: ""
-                    }, {titulo: "CJ31 - Consulta de verbas", url: ""}, {
-                        titulo: "CJ20N - Criar Campanha",
-                        url: ""
-                    }, {titulo: "ZPSR1 - Extrato Detalhado PEP", url: ""}, {
-                        titulo: "ZTLV10G - Consulta Bonificação",
-                        url: ""
-                    }]
-                }
-            ];
-
+            },
+            {
+                nome: "Atividades",
+                icone: "",
+                links: [{titulo: "ZTLV22 - Criar Providência", url: ""}, {
+                    titulo: "ZC10 - Relatório de atividades",
+                    url: ""
+                }, {titulo: "MM03 - Cadastro de Produto", url: ""}]
+            },
+            {
+                nome: "Estoque",
+                icone: "",
+                links: [{titulo: "ZVSCE17 - Sintese de Estoque", url: ""}, {
+                    titulo: "ZMBE - Consulta Estoque",
+                    url: ""
+                }]
+            },
+            {
+                nome: "Ordem/NF",
+                icone: "",
+                links: [{titulo: "ZV20 - Lista Ordem", url: ""}, {
+                    titulo: "ZV40 - Lista Ordem Orig.",
+                    url: ""
+                }, {titulo: "VA01 - Criar Ordem R3", url: ""}, {
+                    titulo: "VA02 - Alterar Ordem R3",
+                    url: ""
+                }, {titulo: "ZVC16 - Ordens Faturadas", url: ""}, {
+                    titulo: "ZSTR14 - Posição de Entrega",
+                    url: ""
+                }, {titulo: "J1B3N - Exibir NF", url: ""}, {
+                    titulo: "ZSTR52 - Rel de ocorrências",
+                    url: ""
+                }, {titulo: "ZSER - Consulta nº série do Produto", url: ""}]
+            },
+            {nome: "Meta/Var", icone: "", links: [{titulo: "ZV57 - Informações Gerenciais", url: ""}]},
+            {
+                nome: "Cred/Cob",
+                icone: "",
+                links: [{
+                    titulo: "FBL6N - Partidas Individuais",
+                    url: ""
+                }, {titulo: "ZFI46 - Crédito do Cliente - Média ", url: ""}, {
+                    titulo: "FD33 - Crédito do Cliente",
+                    url: ""
+                }, {titulo: "ZFE15 - Rel. Fretes Contas RE", url: ""}]
+            },
+            {
+                nome: "Verbas",
+                icone: "",
+                links: [{titulo: "CJ37 - Empenho da verbas", url: ""}, {
+                    titulo: "CJ30 - 1º Empenho na Campanha",
+                    url: ""
+                }, {titulo: "CJ31 - Consulta de verbas", url: ""}, {
+                    titulo: "CJ20N - Criar Campanha",
+                    url: ""
+                }, {titulo: "ZPSR1 - Extrato Detalhado PEP", url: ""}, {
+                    titulo: "ZTLV10G - Consulta Bonificação",
+                    url: ""
+                }]
+            }
+        ];
 
         $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $rootScope.currentRoute = $location.path();
@@ -3034,6 +3091,65 @@ angular.module("App.controllers", [])
 
         $rootScope.ultimosProcessos = [];
 
+        $rootScope.tabelaDesnormalizada = [
+            {
+                contato: "Ricardo",
+                cargo: "Comprador",
+                telefone: "4932330591",
+                telefonePrioritario: false,
+                email: "compras@lamarsupercenter.com.br",
+                emailPrioritario: true
+            },
+            {
+                contato: "Ricardo",
+                cargo: "Comprador",
+                telefone: "4932331883",
+                telefonePrioritario: false,
+                email: "",
+                emailPrioritario: false
+            },
+            {
+                contato: "Ricardo",
+                cargo: "Comprador",
+                telefone: "4932331807",
+                telefonePrioritario: false,
+                email: "",
+                emailPrioritario: false
+            },
+            {
+                contato: "Keli",
+                cargo: "Gerente",
+                telefone: "4932331884",
+                telefonePrioritario: false,
+                email: "keli@lamarsupercenter.com.br",
+                emailPrioritario: false
+            },
+            {
+                contato: "Keli",
+                cargo: "Gerente",
+                telefone: "4932331806",
+                telefonePrioritario: false,
+                email: "gerente@lamarsupercenter.com.br",
+                emailPrioritario: true
+            },
+            {
+                contato: "Keli",
+                cargo: "Gerente",
+                telefone: "",
+                telefonePrioritario: false,
+                email: "kelicompras@lamarsupercenter.com.br",
+                emailPrioritario: false
+            },
+            {
+                contato: "Keli",
+                cargo: "Gerente",
+                telefone: "",
+                telefonePrioritario: false,
+                email: "keligerente@lamarsupercenter.com.br",
+                emailPrioritario: false
+            }
+        ];
+
         $rootScope.products = [{
             material: '',
             cor: '',
@@ -3059,9 +3175,7 @@ angular.module("App.controllers", [])
             valor_ipi: '',
             valor_icms_st: '',
             valor_negociado: ''
-        }
-
-        ];
+        }];
 
 
     });

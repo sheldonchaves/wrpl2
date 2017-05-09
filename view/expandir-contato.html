@@ -133,167 +133,77 @@
     </uib-tab>
     <uib-tab index="1" heading="Manutenção Contato">
         <div class="modal-body">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-3">Agrupador</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" placeholder="Numero"
-                                       ng-model="selectedClient.contatos[0].agrupador.numero">
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" placeholder="nome"
-                                       ng-model="selectedClient.contatos[0].agrupador.nome">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3">Emissor</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Numero"
+                                               ng-model="selectedClient.contatos[0].agrupador.numero">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="nome"
+                                               ng-model="selectedClient.contatos[0].agrupador.nome">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3">Contato</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" placeholder="Numero"
-                                       ng-model="selectedClient.contatos[0].numero">
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" placeholder="Nome"
-                                       ng-model="selectedClient.contatos[0].nome">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3">Cargo</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" placeholder="numero"
-                                       ng-model="selectedClient.contatos[0].cargo">
+                        <div class="form-group">
+                            <label class="col-sm-3">Contato</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Numero"
+                                               ng-model="selectedClient.contatos[0].numero">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Nome"
+                                               ng-model="selectedClient.contatos[0].nome">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <panel title="Telefone" height="40" col="12">
-                        <panel-actions>
-                            <button type="button" class="btn btn-default btn-sm" ng-click="adicionarTelefone()"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-default btn-sm" uib-tooltip="Remover todos Telefones"
-                                    ng-click="removerTodosTelefones()"><i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </panel-actions>
-                        <table class="table table-hover">
-                            <!-- <caption>Monthly Kills</caption> -->
-                            <thead>
-                            <tr>
-                                <th>Telefone</th>
-                                <th>Prioritario</th>
-                                <th>Ação</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="telefone in selectedClient.contatos[0].telefones">
-                                <td>{{telefone.numero}}</td>
-                                <td ng-click="alterarPrioridade(telefone)">
-                                    <div ng-if="telefone.prioritario" class='hidden-sm hidden-xs action-buttons'>
-                                    <a class="green" style="color: green"
-                                       href=""><i class="fa fa-check-circle-o bigger-130"></i></a>
-                                </div></td>
-                                <td>
-                                    <div class='action-buttons'>
-                                        <a class="red" style="color: red" ng-click="removerTelefone(telefone)"
-                                           href=""><i class="fa fa-minus bigger-130"></i></a>
+                        <div class="form-group">
+                            <label class="col-sm-3">Cargo</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="numero"
+                                               ng-model="selectedClient.contatos[0].cargo">
                                     </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                    </panel>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <panel title="Email" height="40" col="12">
-                        <panel-actions>
-                            <button type="button" class="btn btn-default btn-sm" ng-click="adicionarEmail()"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-default btn-sm" uib-tooltip="Remover todos emails"
-                                    ng-click="removerTodosEmails()"><i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </panel-actions>
-                        <table class="table table-hover">
-                            <!-- <caption>Monthly Kills</caption> -->
-                            <thead>
-                            <tr>
-                                <th>Telefone</th>
-                                <th>Prioritario</th>
-                                <th>Ação</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="email in selectedClient.contatos[0].emails">
-                                <td>{{email.email}}</td>
-                                <td ng-click="alterarPrioridade(email)">
-                                    <div ng-if="email.prioritario" class='hidden-sm hidden-xs action-buttons'>
-                                        <a class="green" style="color: green"
-                                           href=""><i class="fa fa-check-circle-o bigger-130"></i></a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class='action-buttons'>
-                                        <a class="red" style="color: red" ng-click="removerEmail(email)"
-                                           href=""><i class="fa fa-minus bigger-130"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                    </panel>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-default btn-circle btn-lg"><i class="fa fa-phone"></i></button>
+                    <button type="button" class="btn btn-primary btn-circle btn-lg"><i class="fa fa-envelope-o"></i>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <panel title="Contatos" height="40" col="12">
-                        <table class="table table-bordered">
-                            <!-- <caption>Monthly Kills</caption> -->
-                            <thead>
-                            <tr>
-                                <th>Codigo Contato</th>
-                                <th>Contato</th>
-                                <th>Cargo</th>
-                                <th>Telefone</th>
-                                <th>Prioritario</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="contato in selectedClient.contatos">
-                                <td>{{contato.numero}}</td>
-                                <td>{{contato.emails[0].email}}</td>
-                                <td>{{contato.cargo}}</td>
-                                <td>{{contato.telefones[0].numero}}</td>
-                                <td ng-click="alterarPrioridade(contato)">
-                                    <div ng-if="contato.prioritario" class='hidden-sm hidden-xs action-buttons'>
-                                        <a class="green" style="color: green"
-                                           href=""><i class="fa fa-check-circle-o bigger-130"></i></a>
-                                    </div></td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                    </panel>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ui-grid="{data:tabelaDesnormalizada}"></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-9 col-sm-3">
-
-                        <button data-bb-handler="cancel" type="button" class="btn btn-default" ng-click="criarContato()">
-                            Criar
-                        </button>
-                        <button data-bb-handler="confirm" type="button" class="btn btn-primary"
-                                ng-click="close()">Salvar
-                        </button>
-                    </div>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col-sm-offset-9 col-sm-3">
+                    <button data-bb-handler="cancel" type="button" class="btn btn-default" ng-click="criarContato()">
+                        Criar
+                    </button>
+                    <button data-bb-handler="confirm" type="button" class="btn btn-primary"
+                            ng-click="close()">Salvar
+                    </button>
                 </div>
-            </form>
+            </div>
         </div>
     </uib-tab>
 </uib-tabset>

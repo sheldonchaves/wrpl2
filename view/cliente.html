@@ -1,5 +1,5 @@
 <div class="row">
-    <panel title="Dados Revenda" icon="fa-user" height="40" col="6">
+    <panel title="Dados Revenda" icon="fa-user" height="42" col="6">
         <panel-actions>
             <button type="button" class="btn btn-warning btn-sm" ng-click="editarDadosCliente()"><i
                     class="fa fa-arrows-alt" aria-hidden="true"></i></button>
@@ -13,16 +13,10 @@
                     <dd class="ng-binding">{{selectedClient.cnpj}}</dd>
                     <dt>Telefone</dt>
                     <dd class="ng-binding">{{selectedClient.contatos[0].telefones[0].numero}}</dd>
-                    <dt class="ng-binding">Cidade</dt>
-                    <dd class="ng-binding">{{selectedClient.cidade}}</dd>
-                    <dt class="ng-binding" style="color: orange">Agrupador</dt>
-                    <dd class="ng-binding" style="color: orange">{{selectedClient.contatos[0].agrupador.numero}}</dd>
-                    <dt>CNPJ</dt>
-                    <dd class="ng-binding">{{selectedClient.cnpj}}</dd>
-                    <dt style="color: orange">Supervisor</dt>
-                    <dd style="color: orange" class="ng-binding">{{selectedClient.contatos[0].supervisor.numero}}</dd>
-                    <dt>Email</dt>
-                    <dd class="ng-binding">{{selectedClient.contatos[0].emails[0].email}}</dd>
+                    <dt class="ng-binding">Cidade/UF</dt>
+                    <dd class="ng-binding">{{selectedClient.cidade}}/{{selectedClient.uf}}</dd>
+                    <dt class="ng-binding">Agrupador</dt>
+                    <dd class="ng-binding">{{selectedClient.contatos[0].agrupador.numero}}</dd>
                 </dl>
             </div>
             <div class="col-md-6">
@@ -33,188 +27,174 @@
                     <dd class="ng-binding">{{selectedClient.contatos[0].nome}}</dd>
                     <dt>Email</dt>
                     <dd class="ng-binding">{{selectedClient.contatos[0].emails[0].email}}</dd>
-                    <dt>UF</dt>
-                    <dd class="ng-binding">{{selectedClient.uf}}</dd>
+                    <dt>Supervisor</dt>
+                    <dd class="ng-binding">{{selectedClient.contatos[0].supervisor.numero}}</dd>
                     <dt>Nome</dt>
-                    <dd class="ng-binding" style="color: orange">{{selectedClient.contatos[0].agrupador.nome}}</dd>
-                    <dt>Telefone</dt >
-                    <dd class="ng-binding">{{selectedClient.contatos[0].telefones[0].numero}}</dd>
-
-                    <dd  style="color: orange" class="ng-binding">{{selectedClient.contatos[0].supervisor.nome}}</dd>
+                    <dd class="ng-binding">{{selectedClient.contatos[0].agrupador.nome}}</dd>
                 </dl>
             </div>
         </div>
     </panel>
-    <panel title="Últimos Processos" icon="fa-bookmark" height="40" col="3">
-        <panel-actions>
-            <button type="button" class="btn btn-sm" ng-click="atualizarProcesso()"><i
-                    class="fa fa-refresh" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-sm" ng-click="excelProcessos()"><i
-                    class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+    <panel title="Dados " icon="fa-bookmark" height="42" col="6">
+        <panel-actions ng-if="teste()">
+        <button type="button" class="btn btn-default btn-sm" ng-click="refresh()"><i
+                class="fa fa-refresh" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="excel()"><i
+                class="fa fa-file-excel-o" aria-hidden="true"></i></button>
         </panel-actions>
-        <div id="exportableProcessos">
-            <div class="input-group input-group-md">
-                    <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"
-                                                                          aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="busca processos" aria-describedby="sizing-addon1"
-                       ng-model="filtro2">
+        <div class="row">
+            <!--     <  uib-tabset active="active" justified="false">
+                     <uib-tab index="0" heading="Últ. Processos">
+                         <div ui-grid="{ data: processos }"></div>
+                     </uib-tab>
+                     <uib-tab index="1" heading="Últ. Contatos">
+                         <div ui-grid="{ data: contatos }"></div>
+                     </uib-tab>
+                     <uib-tab index="2" heading="Players Linha Branca">
+                         <div ui-grid="{ data: linhaBranca }"></div>
+                     </uib-tab>
+                     <uib-tab index="3" heading="Concorrentes Revenda">
+                         <div ui-grid="{ data: concorrentesRevenda }"></div>
+                     </uib-tab>
+                 </uib-tabset>-->
+            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                <div uib-slide index="0"
+                     class="slide animated">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ui-grid="{ data: processos }" class="grid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div uib-slide index="1"
+                     class="slide animated">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ui-grid="gridOptions" class="grid"></div>
+                        </div>
+                    </div>
+                </div>
+                <div uib-slide index="2"
+                     class="slide animated">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ui-grid="{ data: linhaBranca }" class="grid"></div>
+                        </div>
+                    </div>
+                </div>
+                <div uib-slide index="3"
+                     class="slide animated">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div ui-grid="{ data: concorrentesRevenda }" class="grid"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <table class="table table-hover">
-                <!-- <caption>Monthly Kills</caption> -->
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Data/hora</th>
-                    <th>Cliente</th>
-                    <th>Processo</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="processo in processos | filter:filtro2">
-                    <!-- <td contenteditable="true">12</td> -->
-                    <td>{{processo.id}}</td>
-                    <td>{{processo.data}}</td>
-                    <td>{{processo.cliente}}</td>
-                    <td>{{processo.processo}}</td>
-                    <td>{{processo.status}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </panel>
-    <panel title="Últimos Contatos" icon="fa-bookmark" height="40" col="3">
-        <panel-actions>
-            <button type="button" class="btn btn-sm" ng-click="atualizarContatoss()"><i
-                    class="fa fa-refresh" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-sm" ng-click="excelContatos()"><i
-                    class="fa fa-file-excel-o" aria-hidden="true"></i></button>
-        </panel-actions>
-        <div id="exportableContatos">
-            <div class="input-group input-group-md">
-                    <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-search"
-                                                                          aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="busca contatos" aria-describedby="sizing-addon1"
-                       ng-model="filtro3">
-            </div>
-            <table class="table table-hover">
-                <!-- <caption>Monthly Kills</caption> -->
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Data</th>
-                    <th>Descricao</th>
-                    <th>Emissor</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="contato in contatos |filter:filtro3" ng-click="editarContatos(contato)">
-                    <td>{{contato.id}}</td>
-                    <td>{{contato.data | date:'dd.MM.yy' }}</td>
-                    <td>{{contato.descricao}}</td>
-                    <td>{{contato.emissor}}</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </panel>
 </div>
 <div class="row">
-    <panel id="perfil" title="Perfil da Revenda" icon="fa-shopping-cart" height="60" col="6">
+    <panel id="perfil" title="Perfil da Revenda" icon="fa-shopping-cart" height="58" col="6">
         <panel-actions>
             <button type="button" class="btn btn-warning btn-sm" ng-click="editarPerfilDeRevenda()"><i
                     class="fa fa-pencil" aria-hidden="true"></i></button>
         </panel-actions>
+        </br>
         <div class="row">
-            <div class="client-info">
-                <entry title="Número de Lojas:" type="text" size="12" model="voluntario.nome"></entry>
+            <div class="col-sm-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2">Nº Lojas</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="Nº Lojas"
+                                   ng-model="selectedClient.contatos[0].numero">
+                        </div>
+                        <label class="col-sm-2">Faturamento Mensal</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control"
+                                   placeholder="Faturamento Mensal"
+                                   ng-model="selectedClient.contatos[0].nome">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">% LB</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="% LB"
+                                   ng-model="selectedClient.endereco">
+                        </div>
+                        <label class="col-sm-2">% TOS 3</label>
+                        <div class="col-sm-3">
+                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="% TOS 3"
+                                   ng-model="selectedClient.domicilioFiscal">
+                        </div>
+                        <div ng-if="!isBlocked" class="col-sm-1">
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="editarTos == !editarTos"><i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div ng-if="editarTos" class="form-group">
+                        <label class="col-offset-sm-6 col-sm-2">Refrigerador</label>
+                        <div class="col-sm-4">
+                            <input ng-if="editarTos" type="text" class="form-control" placeholder="% TOS 3"
+                                   ng-model="selectedClient.domicilioFiscal">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">Pricipal Segmento</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control"
+                                   placeholder="Pricipal Segmento"
+                                   ng-model="selectedClient.uf">
+                        </div>
+                        <label class="col-sm-2">% Pricipal Segmento</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control"
+                                   placeholder="% Pricipal Segmento"
+                                   ng-model="selectedClient.pais">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">Markup</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="Markup"
+                                   ng-model="selectedClient.cep">
+                        </div>
+                        <label class="col-sm-2">Data de atualização</label>
+                        <div class="col-sm-4">
+                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="Numero"
+                                   ng-model="selectedClient.contatos[0].telefones[0].numero">
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
-        <div class="row">
-            <c3chart bindto-id="stacked-bar-plot1-chart"
-                     chart-data="dadosGraficos"
-                     chart-columns="dadosGraficosColunas"
-                     chart-x="datax">
-                <chart-axes values-x="x"/>
-                <chart-axis>
-                    <chart-axis-x axis-position="outer-center"
-                                  axis-label="Dados Mercado"
-                                  axis-type="category"/>
-                </chart-axis>
-                <chart-bar ratio="0.8"/>
-                <chart-group group-values="data 1,data 2"/>
-            </c3chart>
         </div>
         <div class="row">
             <div class="client-class">
                 <span class="title">Perfil da Loja</span>
                 <ul>
-                    <input ng-disabled="true" id="classea" ng-model="perfilLoja1" ng-true-value="1" ng-false-value="0"
+                    <input ng-disabled="isBlocked" id="classea" ng-model="perfilLoja1" ng-true-value="1"
+                           ng-false-value="0"
                            type="checkbox"/>
                     <label for="classea">Classe A</label>
-                    <input ng-disabled="true" id="classeb" ng-model="perfilLoja2" ng-true-value="1" ng-false-value="0"
+                    <input ng-disabled="isBlocked" id="classeb" ng-model="perfilLoja2" ng-true-value="1"
+                           ng-false-value="0"
                            type="checkbox"/>
                     <label for="classeb">Classe B</label>
-                    <input ng-disabled="true" id="classec" ng-model="perfilLoja3" ng-true-value="1" ng-false-value="0"
+                    <input ng-disabled="isBlocked" id="classec" ng-model="perfilLoja3" ng-true-value="1"
+                           ng-false-value="0"
                            type="checkbox"/>
                     <label for="classec">Classe C</label>
-                    <input ng-disabled="true" id="classed" ng-model="perfilLoja4" ng-true-value="1" ng-false-value="0"
+                    <input ng-disabled="isBlocked" id="classed" ng-model="perfilLoja4" ng-true-value="1"
+                           ng-false-value="0"
                            type="checkbox"/>
                     <label for="classed">Classe D</label>
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="input-group input-group-md">
-                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search"
-                                                                          aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="busca players" aria-describedby="sizing-addon1"
-                           ng-model="filtro">
-                </div>
-            </div>
-        </div>
-        </br>
-        <div class="row">
-            <div class="col-md-6">
-                <table class="table table-hover">
-                    <!-- <caption>Monthly Kills</caption> -->
-                    <thead class="thead-bold">
-                    <tr>
-                        <th>#</th>
-                        <th>Players Linha Branca</th>
-                        <th>%</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="produto in linhaBranca | filter:filtro">
-                        <td>{{produto.id}}</td>
-                        <td>{{produto.nome}}</td>
-                        <td>{{produto.quantidade}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <table class="table table-hover">
-                    <!-- <caption>Monthly Kills</caption> -->
-                    <thead class="thead-bold">
-                    <tr>
-                        <th>#</th>
-                        <th>Concorrentes Revenda</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="produto in concorrentesRevenda">
-                        <td>{{produto.id}}</td>
-                        <td>{{produto.nome}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </panel>
-    <panel title="Notas" icon="fa-comments" height="60" col="6">
+    <panel title="Notas" icon="fa-comments" height="58" col="6">
         <div class="row">
             <div class="col-md-6">
                 <h3 class="title-gray-block">Gerais
@@ -243,7 +223,8 @@
                                 style="margin-top: -10px;" ng-click="removePontual(pontual)">×
                         </button>
                         <span class="text">{{pontual.texto}}</span>
-                        <div class="date">{{pontual.data | date:'dd.MM.yyyy'}}</div><div class="noteuser">{{pontual.user.abreviado}}</div>
+                        <div class="date">{{pontual.data | date:'dd.MM.yyyy'}}</div>
+                        <div class="noteuser">{{pontual.user.abreviado}}</div>
                     </li>
                 </ul>
             </div>

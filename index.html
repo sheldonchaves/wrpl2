@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="lib/css/bsflat.css">
     <link rel="stylesheet" href="lib/js/c3/c3.css">
     <link rel="stylesheet" href="lib/css/sweetalert.css">
+    <link rel="stylesheet" href="lib/css/ui-grid.min.css">
     <link href="view/css/reset.css" rel="stylesheet">
     <!--     <link href="view/css/geral.css" rel="stylesheet"> -->
     <link href="view/css/admin.css" rel="stylesheet">
@@ -31,6 +32,7 @@
     <script type="text/javascript" src="lib/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="lib/js/ngSweetAlert-master/SweetAlert.min.js"></script>
     <script type="text/javascript" src="lib/js/FileSaver.js"></script>
+    <script type="text/javascript" src="lib/js/ui-grid.min.js"></script>
     <!-- THIS APP. -->
     <script src="App.js"></script>
     <script src="js/services.js"></script>
@@ -66,21 +68,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">{{selectedClient.razao}}</a></li>
                     <li><a ng-click="gotoCliente()" href="">Trocar de Cliente</a></li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">SAP <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="#">More options</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Second level link</a></li>
-                                    <li><a href="#">Second level link</a></li>
-                                    <li><a href="#">Second level link</a></li>
-                                    <li><a href="#">Second level link</a></li>
-                                    <li><a href="#">Second level link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        </li>
+                    <li><a ng-click="divLink()" href="">Link</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li uib-dropdown class="dropdown">
@@ -103,45 +91,93 @@
                                 <thead class="thead-bold">
                                     <tr>
                                         <th>#</th>
-                                        <th>Emissor</th>
-                                        <th>Limite Total</th>
-                                        <th>Limite WHP</th>
-                                        <th>Exposição WRP</th>
-                                        <th>Em Aberto WRP</th>
+                                        <th>Região</th>
+                                        <th>Modelo</th>
+                                        <th>% Desconto</th>
+                                        <th>VPC</th>
+                                        <th>Prazo</th>
+                                        <th>Outros</th>
+                                        <th>Válido Desde</th>
+                                        <th>Válido até</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>445646546</td>
-                                        <td>R$ 110.000,00</td>
-                                        <td>R$ 85.000,00</td>
-                                        <td>R$ 25.000,00</td>
-                                        <td>R$ 5.000,00</td>
+                                        <td>TODOS</td>
+                                        <td>CWE09</td>
+                                        <td>5%</td>
+                                        <td>30PP</td>
+                                        <td></td>
+                                        <td>PVL=R$ 230</td>
+                                        <td>24.04.2017</td>
+                                        <td>15.05.2017</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>98794656</td>
-                                        <td>R$ 60.000,00</td>
-                                        <td>R$ 45.000,00</td>
-                                        <td>R$ 15.000,00</td>
-                                        <td>R$ 2.000,00</td>
+                                        <td>TODOS</td>
+                                        <td>CWE11</td>
+                                        <td>3%</td>
+                                        <td>MKT</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>25.03.2017</td>
+                                        <td>15.05.2017</td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>654654646</td>
-                                        <td>R$ 160.000,00</td>
-                                        <td>R$ 145.000,00</td>
-                                        <td>R$ 115.000,00</td>
-                                        <td>R$ 90.000,00</td>
+                                        <td>TODOS</td>
+                                        <td>BMF45</td>
+                                        <td>9%</td>
+                                        <td>20PP</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>10.03.2017</td>
+                                        <td>15.05.2017</td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
-                                        <td>684654654</td>
-                                        <td>R$ 110.000,00</td>
-                                        <td>R$ 85.000,00</td>
-                                        <td>R$ 25.000,00</td>
-                                        <td>R$ 5.000,00</td>
+                                        <td>TODOS</td>
+                                        <td>BRM46</td>
+                                        <td>6%</td>
+                                        <td>15PP</td>
+                                        <td></td>
+                                        <td>PREÇO BEM ESTAR</td>
+                                        <td>10.03.2017</td>
+                                        <td>15.05.2017</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>TODOS</td>
+                                        <td>GOK73</td>
+                                        <td>11%</td>
+                                        <td>10PP</td>
+                                        <td></td>
+                                        <td>PVL=R$ 180</td>
+                                        <td>24.02.2017</td>
+                                        <td>15.05.2017</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>TODOS</td>
+                                        <td>BWJ11</td>
+                                        <td>14%</td>
+                                        <td>MKT</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>20.02.2017</td>
+                                        <td>15.05.2017</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>TODOS</td>
+                                        <td>BLF08</td>
+                                        <td>2%</td>
+                                        <td>MKT</td>
+                                        <td></td>
+                                        <td>PREÇO BEM ESTAR</td>
+                                        <td>20.02.2017</td>
+                                        <td>15.05.2017</td>
                                     </tr>
                                 </tbody>
                             </table>
