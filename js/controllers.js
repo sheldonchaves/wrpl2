@@ -38,6 +38,7 @@ angular.module("App.controllers", [])
         $scope.lastProcesso = 0;
         $scope.lastContato = 0;
         $scope.isBlocked = true;
+        $scope.isBlockedTos = false;
 
         $scope.gerais = [{
             id: 0,
@@ -246,7 +247,14 @@ angular.module("App.controllers", [])
         $scope.gotoDev = function () {
             $location.path("/dev");
         };
+        
+        $scope.editarTos = function () {
+            $scope.isBlockedTos = !$scope.isBlockedTos;
+        }
 
+        $scope.calculaTos = function () {
+            $rootScope.selectedClient.revenda.tos.total = parseInt($rootScope.selectedClient.revenda.tos.refrigerador) + parseInt($rootScope.selectedClient.revenda.tos.lavadora) + parseInt($rootScope.selectedClient.revenda.tos.fogao);
+        }
 
     })
     .controller("CaminhoCtrl", function ($scope, $rootScope, $uibModal) {
@@ -1002,6 +1010,21 @@ angular.module("App.controllers", [])
                 pais: "BRASIL",
                 domicilioFiscal: "SC 0015",
                 cep: "88410-000",
+                revenda:{
+                  numeroLojas:12,
+                    faturamentoMensal:1234567,
+                    lb:12,
+                    tos:{
+                      refrigerador:12,
+                      fogao:12,
+                      lavadora:15,
+                        total:39
+                    },
+                    principalSegmento:123,
+                    principalSegmentoValor:12,
+                    markup:12,
+                    data:"12.12.2012"
+                },
                 email: "carrefour@carrefour.com",
                 inscricaoEstadual: "255155603",
                 contatos: [
