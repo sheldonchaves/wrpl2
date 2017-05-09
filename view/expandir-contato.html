@@ -142,11 +142,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="Numero"
-                                               ng-model="selectedClient.contatos[0].agrupador.numero">
+                                               ng-model="selectedClient.contatoPrioritario.agrupador.numero">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="nome"
-                                               ng-model="selectedClient.contatos[0].agrupador.nome">
+                                               ng-model="selectedClient.contatoPrioritario.agrupador.nome">
                                     </div>
                                 </div>
                             </div>
@@ -157,11 +157,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="Numero"
-                                               ng-model="selectedClient.contatos[0].numero">
+                                               ng-model="selectedClient.contatoPrioritario.numero">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="Nome"
-                                               ng-model="selectedClient.contatos[0].nome">
+                                               ng-model="selectedClient.contatoPrioritario.nome">
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" placeholder="numero"
-                                               ng-model="selectedClient.contatos[0].cargo">
+                                               ng-model="selectedClient.contatoPrioritario.cargo">
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
             </br>
             <div class="row">
                 <div class="col-sm-12">
-                    <div ui-grid="{data:tabelaDesnormalizada}"></div>
+                    <div ui-grid="{data:tabelaDesnormalizada}" class="grid-manutencao"></div>
                 </div>
             </div>
             </br>

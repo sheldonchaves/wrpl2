@@ -690,6 +690,11 @@ span.glyphicon.glyphicon-chevron-left {
     height: 250px;
 }
 
+.grid-manutencao {
+    width: 870px;
+    height: 250px;
+}
+
 .carousel-control.right {
     width : 40px;
 }

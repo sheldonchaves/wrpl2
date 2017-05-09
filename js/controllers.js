@@ -93,10 +93,6 @@ angular.module("App.controllers", [])
         $scope.gridOptions = {
             data: 'contatos',
             columnDefs: [{
-                field: 'id',
-                displayName: 'Id',
-                cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
-            }, {
                 field: 'data',
                 displayName: 'Data',
                 cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
@@ -118,9 +114,9 @@ angular.module("App.controllers", [])
         };
 
         $scope.teste = function () {
-            if($scope.active == 0 || $scope.active == 1){
+            if ($scope.active == 0 || $scope.active == 1) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -164,7 +160,7 @@ angular.module("App.controllers", [])
 
         init();
 
-        $scope.$watch('active', function(active) {
+        $scope.$watch('active', function (active) {
             console.log("current value: ", active)
         });
 
@@ -247,7 +243,7 @@ angular.module("App.controllers", [])
         $scope.gotoDev = function () {
             $location.path("/dev");
         };
-        
+
         $scope.editarTos = function () {
             $scope.isBlockedTos = !$scope.isBlockedTos;
         }
@@ -575,15 +571,9 @@ angular.module("App.controllers", [])
         };
 
         $scope.adicionarNovoContato = function (contato) {
-            contato.numero = Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 0;
-            if (!!contato.telefones) {
-                contato.telefones[0].id = contato.telefones.length;
-                contato.telefones[0].prioritario = false;
-            }
-            if (!!contato.emails) {
-                contato.emails[0].id = contato.emails.length;
-                contato.emails[0].prioritario = false;
-            }
+            contato.telefonePrioritario = false;
+            contato.emailPrioritario = false;
+            $rootScope.tabelaDesnormalizada.push(contato);
             $rootScope.selectedClient.contatos.push(contato);
             $uibModalInstance.close();
         };
@@ -810,42 +800,42 @@ angular.module("App.controllers", [])
         $rootScope.currentRoute = "/home";
 
         $rootScope.processos = [
-            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
-            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
+            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
+            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
         ];
 
         $rootScope.processos1 = [
-            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Em processamento"},
-            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Cancelado"}
+            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Em processamento"},
+            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Cancelado"}
         ];
 
         $rootScope.processos2 = [
-            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Finalizado"},
-            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Encerrado"}
+            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Finalizado"},
+            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Encerrado"}
         ];
 
         $rootScope.processos3 = [
-            {id: 1, data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
-            {id: 2, data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
+            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
+            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
         ];
 
         $rootScope.contatos = [
             {
-                id: 1,
+
                 data: "14.04.17",
                 descricao: "0000456456",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
-                id: 2,
+
                 data: "14.04.17",
                 descricao: "0000456457",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
-                id: 3,
+
                 data: "20.04.17",
                 descricao: "0000456458",
                 emissor: 564654,
@@ -856,21 +846,21 @@ angular.module("App.controllers", [])
 
         $rootScope.contatos2 = [
             {
-                id: 1,
+
                 data: "14.04.17",
                 descricao: "11111456456",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
-                id: 2,
+
                 data: "14.04.17",
                 descricao: "1111456457",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
-                id: 3,
+
                 data: "20.04.17",
                 descricao: "1111456458",
                 emissor: 564654,
@@ -881,21 +871,21 @@ angular.module("App.controllers", [])
 
         $rootScope.contatos1 = [
             {
-                id: 1,
+
                 data: "14.04.17",
                 descricao: "0000456456",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
-                id: 2,
+
                 data: "14.04.17",
                 descricao: "0000456457",
                 emissor: 423476,
                 status: "Atualização: 03.05.2017 - PHERMANN\n\nAguardando retorno do cliente"
             },
             {
-                id: 3,
+
                 data: "20.04.17",
                 descricao: "0000456458",
                 emissor: 564654,
@@ -1010,23 +1000,62 @@ angular.module("App.controllers", [])
                 pais: "BRASIL",
                 domicilioFiscal: "SC 0015",
                 cep: "88410-000",
-                revenda:{
-                  numeroLojas:12,
-                    faturamentoMensal:1234567,
-                    lb:12,
-                    tos:{
-                      refrigerador:12,
-                      fogao:12,
-                      lavadora:15,
-                        total:39
+                revenda: {
+                    numeroLojas: 12,
+                    faturamentoMensal: 1234567,
+                    lb: 12,
+                    tos: {
+                        refrigerador: 12,
+                        fogao: 12,
+                        lavadora: 15,
+                        total: 39
                     },
-                    principalSegmento:123,
-                    principalSegmentoValor:12,
-                    markup:12,
-                    data:"12.12.2012"
+                    principalSegmento: 123,
+                    principalSegmentoValor: 12,
+                    markup: 12,
+                    data: "12.12.2012"
                 },
                 email: "carrefour@carrefour.com",
                 inscricaoEstadual: "255155603",
+                contatoPrioritario: {
+                    numero: 45698744,
+                    nome: "José Cachoeira",
+                    prioritario: true,
+                    agrupador: {
+                        numero: 45698744,
+                        nome: "José Cachoeira"
+                    },
+                    supervisor: {
+                        numero: 45648948,
+                        nome: "Paula Hermann"
+                    },
+                    cargo: "Gerente",
+                    telefones: [
+                        {
+                            id: 0,
+                            numero: "+55 11 1234-5678",
+                            prioritario: true
+                        },
+                        {
+                            id: 1,
+                            numero: "+55 11 7894-4563",
+                            prioritario: false
+                        }
+                    ],
+                    emails: [
+                        {
+                            id: 0,
+                            email: "joao@carrefour.com.br",
+                            prioritario: true
+                        },
+                        {
+                            id: 1,
+                            email: "comercial@carrefour.com.br",
+                            prioritario: false
+                        }
+                    ]
+
+                },
                 contatos: [
                     {
                         numero: 45698744,
