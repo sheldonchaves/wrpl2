@@ -91,6 +91,7 @@ angular.module("App.controllers", [])
         ];
 
         $scope.gridOptions = {
+            enableHorizontalScrollbar : 0,
             data: 'contatos',
             columnDefs: [{
                 field: 'data',
