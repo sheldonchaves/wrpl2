@@ -304,8 +304,8 @@ p {
 
 .notes li .date {
     display: inline;
-    float:left;
-    width:50%;
+    float: left;
+    width: 50%;
     background-color: #1b6d85;
     padding: 2px 5px;
     font-size: 12px;
@@ -315,15 +315,14 @@ p {
 
 .notes li .noteuser {
     display: inline;
-    width:50%;
-    float:left;
+    width: 50%;
+    float: left;
     background-color: #078573;
     padding: 2px 5px;
     font-size: 12px;
     color: #fff;
     text-align: center;
 }
-
 
 .notes li button {
     -webkit-appearance: none;
@@ -465,67 +464,10 @@ p {
     display: inline-block;
 }
 
-background:
+background:-webkit-linear-gradient(top,rgba(0,0,0,0.05),rgba(0,0,0,0.25));
+background:linear-gradient(top,rgba(0,0,0,0.05),rgba(0,0,0,0.25));
+background-color: #FFFD75;
 
--webkit-linear-gradient
-(
-top,
-
-rgba
-(
-0
-,
-0
-,
-0
-,
-0.05
-)
-,
-rgba
-(
-0
-,
-0
-,
-0
-,
-0.25
-)
-)
-;
-background:
-
-linear-gradient
-(
-top,
-
-rgba
-(
-0
-,
-0
-,
-0
-,
-0.05
-)
-,
-rgba
-(
-0
-,
-0
-,
-0
-,
-0.25
-)
-)
-;
-background-color: #FFFD75
-
-;
 .client-class label {
     font-size: 13px;
     color: #999;
@@ -668,6 +610,7 @@ span.glyphicon.glyphicon-chevron-left {
     line-height: 1.428571429;
     border-radius: 15px;
 }
+
 .btn-circle.btn-lg {
     width: 50px;
     height: 50px;
@@ -676,6 +619,7 @@ span.glyphicon.glyphicon-chevron-left {
     line-height: 1.33;
     border-radius: 25px;
 }
+
 .btn-circle.btn-xl {
     width: 70px;
     height: 70px;
@@ -697,12 +641,16 @@ span.glyphicon.glyphicon-chevron-left {
 
 .carousel-control.right {
     margin-top: 35px;
-    width : 40px;
+    width: 40px;
     height: 200px;
 }
 
 .carousel-control.left {
     margin-top: 35px;
-    width : 40px;
-    height: 200 px;
+    width: 40px;
+    height: 200px;
+}
+
+.grid-manutencao-contatos {
+    text-align:center;
 }

@@ -40,58 +40,60 @@ angular.module("App.controllers", [])
         $scope.isBlocked = true;
         $scope.isBlockedTos = false;
 
-        $scope.gerais = [{
-            id: 0,
-            titulo: 'Comportamento',
-            texto: 'Texto Comportamento - Feito contato com o cliente que comentou sobre promoções de outros concorrentes'
-        }, {
-            id: 1,
-            titulo: 'Mercado',
-            texto: 'Mercado - Feito contato com o cliente que comentou sobre promoções de outros concorrentes'
-        }, {
-            id: 2,
-            titulo: 'Concorrência',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
-        }
+        $scope.gerais = [
+            {
+                id: 0,
+                titulo: 'Comportamento',
+                texto: 'Texto Comportamento - Feito contato com o cliente que comentou sobre promoções de outros concorrentes'
+            }, {
+                id: 1,
+                titulo: 'Mercado',
+                texto: 'Mercado - Feito contato com o cliente que comentou sobre promoções de outros concorrentes'
+            }, {
+                id: 2,
+                titulo: 'Concorrência',
+                texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes'
+            }
         ];
 
-        $rootScope.pontuais = [{
-            id: 0,
-            data: '03.04.2017',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user: {
-                nome: "PAULA HERMANN",
-                abreviado: "PHERMANN"
+        $rootScope.pontuais = [
+            {
+                id: 0,
+                data: '03.04.2017',
+                texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+                user: {
+                    nome: "PAULA HERMANN",
+                    abreviado: "PHERMANN"
+                }
+            }, {
+                id: 1,
+                data: '03.04.2017',
+                texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+                user: {
+                    nome: "PAULA HERMANN",
+                    abreviado: "PHERMANN"
+                }
+            }, {
+                id: 2,
+                data: '03.04.2017',
+                texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+                user: {
+                    nome: "PAULA HERMANN",
+                    abreviado: "PHERMANN"
+                }
+            }, {
+                id: 3,
+                data: '03.04.2017',
+                texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
+                user: {
+                    nome: "PAULA HERMANN",
+                    abreviado: "PHERMANN"
+                }
             }
-        }, {
-            id: 1,
-            data: '03.04.2017',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user: {
-                nome: "PAULA HERMANN",
-                abreviado: "PHERMANN"
-            }
-        }, {
-            id: 2,
-            data: '03.04.2017',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user: {
-                nome: "PAULA HERMANN",
-                abreviado: "PHERMANN"
-            }
-        }, {
-            id: 3,
-            data: '03.04.2017',
-            texto: 'Feito contato com o cliente que comentou sobre promoções de outros concorremtes',
-            user: {
-                nome: "PAULA HERMANN",
-                abreviado: "PHERMANN"
-            }
-        }
         ];
 
-        $scope.gridOptions = {
-            enableHorizontalScrollbar : 0,
+        $scope.gridContatos = {
+            enableHorizontalScrollbar: 0,
             data: 'contatos',
             columnDefs: [{
                 field: 'data',
@@ -109,6 +111,54 @@ angular.module("App.controllers", [])
                 field: 'status',
                 displayName: 'Status',
                 cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
+            }
+
+            ]
+        };
+
+        $scope.gridLinhaBranca = {
+            enableHorizontalScrollbar: 0,
+            data: 'linhaBranca',
+            columnDefs: [{
+                field: 'id',
+                displayName: 'Id'
+            }, {
+                field: 'nome',
+                displayName: 'Nome'
+            }, {
+                field: 'quantidade',
+                displayName: 'Quantidade'
+            }, {
+                field: 'acao',
+                displayName: 'Status',
+                cellTemplate: '  <div class="action-buttons"> ' +
+                ' <a class="blue" style="color: blue"  ng-click="grid.appScope.editarLinhaBranca(row.entity)" href=""><i class="fa fa-pencil bigger-130"></i></a>' +
+                ' <a class="red" style="color: red"  ng-click="grid.appScope.removerLinhaBranca(row.entity)" href=""><i class="fa fa-minus bigger-130"></i></a>' +
+                ' </div>'
+            }
+
+            ]
+        };
+
+        $scope.gridConcorrentes = {
+            enableHorizontalScrollbar: 0,
+            data: 'concorrentesRevenda',
+            columnDefs: [{
+                field: 'id',
+                displayName: 'Id'
+            }, {
+                field: 'nome',
+                displayName: 'Nome'
+            }, {
+                field: 'quantidade',
+                displayName: 'Quantidade'
+            }, {
+                field: 'acao',
+                displayName: 'Status',
+                cellTemplate: '  <div class="action-buttons"> ' +
+                ' <a class="blue" style="color: blue"  ng-click="grid.appScope.editarConcorrenteRevenda(row.entity)" href=""><i class="fa fa-pencil bigger-130"></i></a>' +
+                ' <a class="red" style="color: red"  ng-click="grid.appScope.removerConcorrenteRevenda(row.entity)" href=""><i class="fa fa-minus bigger-130"></i></a>' +
+                ' </div>'
             }
 
             ]
@@ -162,7 +212,7 @@ angular.module("App.controllers", [])
         init();
 
         $scope.$watch('active', function (active) {
-            console.log("current value: ", active)
+            console.log("current value: ", active);
         });
 
         $scope.adicionarPontual = function () {
@@ -437,8 +487,17 @@ angular.module("App.controllers", [])
         };
 
         $scope.adicionarEmail = function (email) {
-            email.id = $rootScope.selectedClient.contatos[0].emails.length;
-            $rootScope.selectedClient.contatos[0].emails.push(email);
+
+            var contato = {
+                contato: "Ricardo",
+                cargo: "Comprador",
+                prioritario: false,
+                telefone: "",
+                telefonePrioritario: "",
+                email: email.email,
+                emailPrioritario: email.prioritario
+            };
+            $rootScope.tabelaDesnormalizada.push(contato);
             $uibModalInstance.close();
         };
 
@@ -451,8 +510,17 @@ angular.module("App.controllers", [])
             $uibModalInstance.close();
         };
         $scope.adicionarTelefone = function (telefone) {
-            telefone.id = $rootScope.selectedClient.contatos[0].telefones.length;
-            $rootScope.selectedClient.contatos[0].telefones.push(telefone);
+            var contato = {
+                contato: "Ricardo",
+                cargo: "Comprador",
+                prioritario: false,
+                telefone: telefone.numero,
+                telefonePrioritario: telefone.prioritario,
+                email: "",
+                emailPrioritario: ""
+            };
+            $rootScope.tabelaDesnormalizada.push(contato);
+
             $uibModalInstance.close();
         };
 
@@ -495,6 +563,48 @@ angular.module("App.controllers", [])
             {field: 'Prioritário'}
         ];
 
+        $scope.gridTabelaDesnormalizada = {
+            enableHorizontalScrollbar: 0,
+            data: 'tabelaDesnormalizada',
+            columnDefs: [
+                {
+                    field: 'contato',
+                    displayName: 'Contato'
+                }, {
+                    field: 'prioritario',
+                    displayName: 'Prioritário',
+                    cellTemplate: ' <div ng-click="grid.appScope.alterarPrioridadeContato(row.entity)">'+
+                    '<div ng-if="!COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
+                    '<a class="red" style="color: red" href=""><i class="fa fa-times-circle-o bigger-130"></i></a></div>'+
+                    '<div ng-if="COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
+                    '<a class="green" style="color: green" href=""><i class="fa fa-check-circle-o bigger-130"></i></a></div></div>'
+                }, {
+                    field: 'telefone',
+                    displayName: 'Telefone'
+                }, {
+                    field: 'telefonePrioritario',
+                    displayName: 'Prioritário',
+                    cellTemplate: ' <div ng-click="grid.appScope.alterarPrioridadeTelefone(row.entity)">'+
+                    '<div ng-if="!COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
+                    '<a class="red" style="color: red" href=""><i class="fa fa-times-circle-o bigger-130"></i></a></div>'+
+                    '<div ng-if="COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
+                    '<a class="green" style="color: green" href=""><i class="fa fa-check-circle-o bigger-130"></i></a></div></div>'
+                },{
+                    field: 'email',
+                    displayName: 'Email'
+                }, {
+                    field: 'emailPrioritario',
+                    displayName: 'Prioritário',
+                    cellTemplate: ' <div ng-click="grid.appScope.alterarPrioridadeEmail(row.entity)">'+
+                    '<div ng-if="!COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
+                    '<a class="red" style="color: red" href=""><i class="fa fa-times-circle-o bigger-130"></i></a></div>'+
+                    '<div ng-if="COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
+                    '<a class="green" style="color: green" href=""><i class="fa fa-check-circle-o bigger-130"></i></a></div></div>'
+                }
+
+            ]
+        };
+
         $scope.adicionarTelefone = function (telefone) {
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -511,7 +621,18 @@ angular.module("App.controllers", [])
             });
         };
 
-        $scope.alterarPrioridade = function (item) {
+        $scope.alterarPrioridadeEmail = function (item) {
+            item.prioritario = !item.prioritario;
+        };
+
+        $scope.alterarPrioridadeTelefone = function (item) {
+            item.telefonePrioritario = !item.telefonePrioritario;
+        };
+
+        $scope.alterarPrioridadeContato = function (item) {
+            for(var i = 0; i < $rootScope.tabelaDesnormalizada.length; i++){
+                $rootScope.tabelaDesnormalizada[i].prioritario = false;
+            }
             item.prioritario = !item.prioritario;
         };
 
@@ -636,17 +757,18 @@ angular.module("App.controllers", [])
             $location.path("/selecionarCliente");
         };
 
-        $rootScope.linksMenu = [{
-            nome: 'Cliente',
-            link: '/cliente',
-            icon: 'fa-user'
+        $rootScope.linksMenu = [
+            {
+                nome: 'Cliente',
+                link: '/cliente',
+                icon: 'fa-user'
 
-        }, {
-            nome: 'Simulações',
-            link: '/simulacoes',
-            icon: 'fa-usd'
+            }, {
+                nome: 'Simulações',
+                link: '/simulacoes',
+                icon: 'fa-usd'
 
-        }];
+            }];
 
         $rootScope.divLink = function () {
             var modalInstance = $uibModal.open({
@@ -802,23 +924,23 @@ angular.module("App.controllers", [])
         $rootScope.currentRoute = "/home";
 
         $rootScope.processos = [
-            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
-            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
+            {data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
+            {data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
         ];
 
         $rootScope.processos1 = [
-            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Em processamento"},
-            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Cancelado"}
+            {data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Em processamento"},
+            {data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Cancelado"}
         ];
 
         $rootScope.processos2 = [
-            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Finalizado"},
-            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Encerrado"}
+            {data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Finalizado"},
+            {data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Encerrado"}
         ];
 
         $rootScope.processos3 = [
-            { data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
-            { data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
+            {data: "14.04.17", cliente: "Carrefour", processo: 423476, status: "Pendente"},
+            {data: "20.04.17", cliente: "Carrefour", processo: 564654, status: "Pendente"}
         ];
 
         $rootScope.contatos = [
@@ -3149,6 +3271,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Ricardo",
                 cargo: "Comprador",
+                prioritario: true,
                 telefone: "4932330591",
                 telefonePrioritario: false,
                 email: "compras@lamarsupercenter.com.br",
@@ -3157,6 +3280,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Ricardo",
                 cargo: "Comprador",
+                prioritario: false,
                 telefone: "4932331883",
                 telefonePrioritario: false,
                 email: "",
@@ -3165,6 +3289,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Ricardo",
                 cargo: "Comprador",
+                prioritario: false,
                 telefone: "4932331807",
                 telefonePrioritario: false,
                 email: "",
@@ -3173,6 +3298,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Keli",
                 cargo: "Gerente",
+                prioritario: false,
                 telefone: "4932331884",
                 telefonePrioritario: false,
                 email: "keli@lamarsupercenter.com.br",
@@ -3181,6 +3307,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Keli",
                 cargo: "Gerente",
+                prioritario: false,
                 telefone: "4932331806",
                 telefonePrioritario: false,
                 email: "gerente@lamarsupercenter.com.br",
@@ -3189,6 +3316,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Keli",
                 cargo: "Gerente",
+                prioritario: false,
                 telefone: "",
                 telefonePrioritario: false,
                 email: "kelicompras@lamarsupercenter.com.br",
@@ -3197,6 +3325,7 @@ angular.module("App.controllers", [])
             {
                 contato: "Keli",
                 cargo: "Gerente",
+                prioritario: false,
                 telefone: "",
                 telefonePrioritario: false,
                 email: "keligerente@lamarsupercenter.com.br",

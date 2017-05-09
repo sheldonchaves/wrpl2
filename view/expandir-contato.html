@@ -182,15 +182,15 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <button type="button" class="btn btn-default btn-circle btn-lg"><i class="fa fa-phone"></i></button>
-                    <button type="button" class="btn btn-primary btn-circle btn-lg"><i class="fa fa-envelope-o"></i>
+                    <button type="button" ng-click="adicionarTelefone()" class="btn btn-default btn-circle btn-lg"><i class="fa fa-phone"></i></button>
+                    <button type="button" ng-click="adicionarEmail()" class="btn btn-primary btn-circle btn-lg"><i class="fa fa-envelope-o"></i>
                     </button>
                 </div>
             </div>
             </br>
             <div class="row">
                 <div class="col-sm-12">
-                    <div ui-grid="{data:tabelaDesnormalizada}" class="grid-manutencao"></div>
+                    <div ui-grid="gridTabelaDesnormalizada" class="grid-manutencao-contatos"></div>
                 </div>
             </div>
             </br>
