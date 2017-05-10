@@ -55,9 +55,9 @@
                 <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
                     <div uib-slide index="0"
                          class="slide animated">
-                        <div class="row">
+                        <div class="row titulo-tabela">
                             <div class="col-sm-4">
-                                <h3>Últimos Processo</h3>
+                                <h3>Últimos Processos</h3>
                             </div>
                             <div class="col-sm-offset-6 col-sm-2">
                                 <button type="button" class="btn btn-default btn-sm" ng-click="atualizarProcesso()"><i
@@ -75,7 +75,7 @@
                     </div>
                     <div uib-slide index="1"
                          class="slide animated">
-                        <div class="row">
+                        <div class="row titulo-tabela">
                             <div class="col-sm-4">
                                 <h3>Últimos Contatos</h3>
                             </div>
@@ -95,7 +95,7 @@
                     </div>
                     <div uib-slide index="2"
                          class="slide animated">
-                        <div class="row">
+                        <div class="row titulo-tabela">
                             <div class="col-sm-4">
                                 <h3>Players Linha Branca</h3>
                             </div>
@@ -114,7 +114,7 @@
                     </div>
                     <div uib-slide index="3"
                          class="slide animated">
-                        <div class="row">
+                        <div class="row titulo-tabela">
                             <div class="col-sm-4">
                                 <h3>Concorrentes Revenda</h3>
                             </div>
@@ -143,18 +143,18 @@
                     class="fa fa-pencil" aria-hidden="true"></i></button>
         </panel-actions>
         </br>
-        <div class="row">
+        <div class="row revenda">
             <div class="col-sm-12">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label class="col-sm-2">Nº Lojas</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="Nº Lojas"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm" placeholder="Nº Lojas"
                                    ng-model="selectedClient.revenda.numeroLojas">
                         </div>
                         <label class="col-sm-2">Faturamento Mensal</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm"
                                    placeholder="Faturamento Mensal"
                                    ng-model="selectedClient.revenda.faturamentoMensal">
                         </div>
@@ -162,12 +162,12 @@
                     <div class="form-group">
                         <label class="col-sm-2">% LB</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="% LB"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm" placeholder="% LB"
                                    ng-model="selectedClient.revenda.lb">
                         </div>
                         <label class="col-sm-2">% TOS 3</label>
                         <div class="col-sm-3">
-                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="% TOS 3"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm" placeholder="% TOS 3"
                                    ng-model="selectedClient.revenda.tos.total">
                         </div>
                         <div ng-if="!isBlocked" class="col-sm-1">
@@ -195,13 +195,13 @@
                     <div class="form-group">
                         <label class="col-sm-2">Principal Segmento</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm"
                                    placeholder="Pricipal Segmento"
                                    ng-model="selectedClient.revenda.principalSegmento">
                         </div>
-                        <label class="col-sm-2">% Principal Segmento</label>
+                        <label class="col-sm-2">%Principal Segmento</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm"
                                    placeholder="% Pricipal Segmento"
                                    ng-model="selectedClient.revenda.principalSegmentoValor">
                         </div>
@@ -209,12 +209,12 @@
                     <div class="form-group">
                         <label class="col-sm-2">Markup</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="Markup"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm" placeholder="Markup"
                                    ng-model="selectedClient.revenda.markup">
                         </div>
                         <label class="col-sm-2">Data de atualização</label>
                         <div class="col-sm-4">
-                            <input ng-disabled="isBlocked" type="text" class="form-control" placeholder="Numero"
+                            <input ng-disabled="isBlocked" type="text" class="form-control input-sm" placeholder="Numero"
                                    ng-model="selectedClient.revenda.data">
                         </div>
                     </div>
