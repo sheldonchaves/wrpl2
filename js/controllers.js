@@ -119,6 +119,7 @@ angular.module("App.controllers", [])
 
         $scope.gridLinhaBranca = {
             enableHorizontalScrollbar: 0,
+            enableFiltering: true,
             data: 'linhaBranca',
             columnDefs: [{
                 field: 'id',
@@ -128,10 +129,12 @@ angular.module("App.controllers", [])
                 displayName: 'Nome'
             }, {
                 field: 'quantidade',
-                displayName: 'Quantidade'
+                displayName: '%',
+                enableFiltering: false
             }, {
                 field: 'acao',
                 displayName: 'Status',
+                enableFiltering: false,
                 cellTemplate: '  <div class="action-buttons"> ' +
                 ' <a class="blue" style="color: blue"  ng-click="grid.appScope.editarLinhaBranca(row.entity)" href=""><i class="fa fa-pencil bigger-130"></i></a>' +
                 ' <a class="red" style="color: red"  ng-click="grid.appScope.removerLinhaBranca(row.entity)" href=""><i class="fa fa-minus bigger-130"></i></a>' +
@@ -140,6 +143,11 @@ angular.module("App.controllers", [])
 
             ]
         };
+
+        $scope.gridLinhaBranca.onRegisterApi = function(gridApi) {
+            $scope.gridApi = gridApi;
+        };
+
 
         $scope.gridConcorrentes = {
             enableHorizontalScrollbar: 0,

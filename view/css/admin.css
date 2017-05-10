@@ -665,6 +665,10 @@ span.glyphicon.glyphicon-chevron-left {
     color:white;
 }
 
+.ui-grid-header-cell-row input{
+    color:black;
+}
+
 .titulo-tabela {
     background-color: lightgray;
     color: darkorange;
@@ -684,6 +688,9 @@ span.glyphicon.glyphicon-chevron-left {
     padding-top: 5px;
 }
 
-.revenda input {
-
+.tabela-linha-branca input {
+    width: 150px;
+    margin-top: 15%;
+    margin-left: 800%;
+    height: 27px;
 }
