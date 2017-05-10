@@ -97,6 +97,7 @@ angular.module("App.controllers", [])
             data: 'contatos',
             columnDefs: [{
                 field: 'data',
+                headerCellClass: 'background-color:gray',
                 displayName: 'Data',
                 cellTemplate: '<div ng-click="grid.appScope.editarContatos(row.entity);">{{COL_FIELD}}</div>'
             }, {
@@ -543,7 +544,7 @@ angular.module("App.controllers", [])
             $rootScope.pontuais.unshift(pontual);
         };
     })
-    .controller("ModalInstanceCtrl", function ($scope, $rootScope, $uibModalInstance, $uibModal, SweetAlert) {
+    .controller("ModalInstanceCtrl", function ($scope, $rootScope, $uibModalInstance, $uibModal, SweetAlert, _) {
         "use strict";
         $scope.close = function () {
             $uibModalInstance.close();
@@ -600,10 +601,27 @@ angular.module("App.controllers", [])
                     '<a class="red" style="color: red" href=""><i class="fa fa-times-circle-o bigger-130"></i></a></div>'+
                     '<div ng-if="COL_FIELD" class="hidden-sm hidden-xs action-buttons">'+
                     '<a class="green" style="color: green" href=""><i class="fa fa-check-circle-o bigger-130"></i></a></div></div>'
+                },{
+                    field: 'acao',
+                    displayName: 'Status',
+                    cellTemplate: '  <div class="action-buttons"> ' +
+                    ' <a class="blue" style="color: blue"  ng-click="grid.appScope.editarContato(row.entity)" href=""><i class="fa fa-pencil bigger-130"></i></a>' +
+                    ' <a class="red" style="color: red"  ng-click="grid.appScope.removerContato(row.entity)" href=""><i class="fa fa-minus bigger-130"></i></a>' +
+                    ' </div>'
                 }
 
             ]
         };
+
+        $scope.removerContato = function (contato) {
+            $rootScope.tabelaDesnormalizada = _.without($rootScope.tabelaDesnormalizada, _.findWhere($rootScope.tabelaDesnormalizada, {id: contato.id}));
+        }
+
+        $scope.deleteSelected = function(){
+            angular.forEach($scope.gridApi.selection.getSelectedRows(), function (data, index) {
+                $scope.gridTabelaDesnormalizada.data.splice($scope.gridTabelaDesnormalizada.data.lastIndexOf(data), 1);
+            });
+        }
 
         $scope.adicionarTelefone = function (telefone) {
             var modalInstance = $uibModal.open({
@@ -680,25 +698,52 @@ angular.module("App.controllers", [])
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: './view/novo-contato.html',
-                controller: 'ModalNovoContatoCtrl'
+                controller: 'ModalNovoContatoCtrl',
+                resolve: {
+                    contato: function () {
+                        return "";
+                    }
+                }
+
+            });
+        };
+
+        $scope.editarContato = function (contato) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: './view/novo-contato.html',
+                controller: 'ModalNovoContatoCtrl',
+                resolve: {
+                    contato: function () {
+                        return contato;
+                    }
+                }
+
             });
         };
 
     })
-    .controller("ModalNovoContatoCtrl", function ($scope, $rootScope, $uibModalInstance) {
+    .controller("ModalNovoContatoCtrl", function ($scope, $rootScope, $uibModalInstance, contato) {
         "use strict";
 
+        $scope.contato = contato;
 
         $scope.close = function () {
             $uibModalInstance.close();
         };
 
         $scope.adicionarNovoContato = function (contato) {
-            contato.telefonePrioritario = false;
-            contato.emailPrioritario = false;
-            $rootScope.tabelaDesnormalizada.push(contato);
-            $rootScope.selectedClient.contatos.push(contato);
-            $uibModalInstance.close();
+
+            if(contato.id != null){
+                $uibModalInstance.close();
+            }else{
+                contato.telefonePrioritario = false;
+                contato.emailPrioritario = false;
+                $rootScope.tabelaDesnormalizada.push(contato);
+                $rootScope.selectedClient.contatos.push(contato);
+                $uibModalInstance.close();
+            }
+
         };
 
 
@@ -765,7 +810,7 @@ angular.module("App.controllers", [])
 
             }, {
                 nome: 'Simulações',
-                link: '/simulacoes',
+                link: '/dev',
                 icon: 'fa-usd'
 
             }];
@@ -3269,6 +3314,7 @@ angular.module("App.controllers", [])
 
         $rootScope.tabelaDesnormalizada = [
             {
+                id:1,
                 contato: "Ricardo",
                 cargo: "Comprador",
                 prioritario: true,
@@ -3278,6 +3324,7 @@ angular.module("App.controllers", [])
                 emailPrioritario: true
             },
             {
+                id:2,
                 contato: "Ricardo",
                 cargo: "Comprador",
                 prioritario: false,
@@ -3287,6 +3334,7 @@ angular.module("App.controllers", [])
                 emailPrioritario: false
             },
             {
+                id:3,
                 contato: "Ricardo",
                 cargo: "Comprador",
                 prioritario: false,
@@ -3296,6 +3344,7 @@ angular.module("App.controllers", [])
                 emailPrioritario: false
             },
             {
+                id:4,
                 contato: "Keli",
                 cargo: "Gerente",
                 prioritario: false,
@@ -3305,6 +3354,7 @@ angular.module("App.controllers", [])
                 emailPrioritario: false
             },
             {
+                id:5,
                 contato: "Keli",
                 cargo: "Gerente",
                 prioritario: false,
@@ -3314,6 +3364,7 @@ angular.module("App.controllers", [])
                 emailPrioritario: true
             },
             {
+                id:6,
                 contato: "Keli",
                 cargo: "Gerente",
                 prioritario: false,
@@ -3323,6 +3374,7 @@ angular.module("App.controllers", [])
                 emailPrioritario: false
             },
             {
+                id:7,
                 contato: "Keli",
                 cargo: "Gerente",
                 prioritario: false,

@@ -242,7 +242,7 @@ p {
 
 .dl-flex {
     font-size: 12px;
-    line-height: 25px;
+    line-height: 18px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -250,7 +250,7 @@ p {
 
 .dl-flex dt {
     flex: 0 0 40%;
-    overflow: hidden;
+
     margin-top: 2px;
     border-bottom: 3px solid #eee;
 }
@@ -630,8 +630,9 @@ span.glyphicon.glyphicon-chevron-left {
 }
 
 .grid {
-    width: 700px;
+    width: 600px;
     height: 250px;
+    font-size: small;
 }
 
 .grid-manutencao {
@@ -652,5 +653,19 @@ span.glyphicon.glyphicon-chevron-left {
 }
 
 .grid-manutencao-contatos {
+    width: 870px;
+    height: 250px;
     text-align:center;
+}
+
+.ui-grid-header-cell-row {
+    background-color: gray;
+    color:white;
+}
+
+.titulo-tabela {
+    font-weight: 600;
+    min-height: 40px;
+    line-height: 40px;
+    color: gray;
 }

@@ -37,90 +37,98 @@
     </panel>
     <panel title="Dados " icon="fa-bookmark" height="42" col="6">
         <div class="row">
-            <!--     <  uib-tabset active="active" justified="false">
-                     <uib-tab index="0" heading="Últ. Processos">
-                         <div ui-grid="{ data: processos }"></div>
-                     </uib-tab>
-                     <uib-tab index="1" heading="Últ. Contatos">
-                         <div ui-grid="{ data: contatos }"></div>
-                     </uib-tab>
-                     <uib-tab index="2" heading="Players Linha Branca">
-                         <div ui-grid="{ data: linhaBranca }"></div>
-                     </uib-tab>
-                     <uib-tab index="3" heading="Concorrentes Revenda">
-                         <div ui-grid="{ data: concorrentesRevenda }"></div>
-                     </uib-tab>
-                 </uib-tabset>-->
-            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                <div uib-slide index="0"
-                     class="slide animated">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h3>Últimos Processo</h3>
+            <div class="col-sm-12">
+                <!--     <  uib-tabset active="active" justified="false">
+                         <uib-tab index="0" heading="Últ. Processos">
+                             <div ui-grid="{ data: processos }"></div>
+                         </uib-tab>
+                         <uib-tab index="1" heading="Últ. Contatos">
+                             <div ui-grid="{ data: contatos }"></div>
+                         </uib-tab>
+                         <uib-tab index="2" heading="Players Linha Branca">
+                             <div ui-grid="{ data: linhaBranca }"></div>
+                         </uib-tab>
+                         <uib-tab index="3" heading="Concorrentes Revenda">
+                             <div ui-grid="{ data: concorrentesRevenda }"></div>
+                         </uib-tab>
+                     </uib-tabset>-->
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                    <div uib-slide index="0"
+                         class="slide animated">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>Últimos Processo</h3>
+                            </div>
+                            <div class="col-sm-offset-6 col-sm-2">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="atualizarProcesso()"><i
+                                        class="fa fa-refresh" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="excelProcessos()"><i
+                                        class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+                            </div>
                         </div>
-                        <div class="col-sm-offset-6 col-sm-2">
-                            <button type="button" class="btn btn-default btn-sm" ng-click="atualizarProcesso()"><i
-                                    class="fa fa-refresh" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-default btn-sm" ng-click="excelProcessos()"><i
-                                    class="fa fa-file-excel-o" aria-hidden="true"></i></button>
-                        </div>
-                    </div></br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div ui-grid="{ data: processos,  enableHorizontalScrollbar : 0}" class="grid"></div>
-                        </div>
-                    </div>
-                </div>
-                <div uib-slide index="1"
-                     class="slide animated">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h3>Últimos Contatos</h3>
-                        </div>
-                        <div class="col-sm-offset-6 col-sm-2">
-                            <button type="button" class="btn btn-default btn-sm" ng-click="atualizarContatoss()"><i
-                                    class="fa fa-refresh" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-default btn-sm" ng-click="excelContatos()"><i
-                                    class="fa fa-file-excel-o" aria-hidden="true"></i></button>
-                        </div>
-                    </div></br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div ui-grid="gridContatos" class="grid"></div>
+                        </br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div ui-grid="{ data: processos,  enableHorizontalScrollbar : 0}" class="grid"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div uib-slide index="2"
-                     class="slide animated">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h3>Players Linha Branca</h3>
+                    <div uib-slide index="1"
+                         class="slide animated">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>Últimos Contatos</h3>
+                            </div>
+                            <div class="col-sm-offset-6 col-sm-2">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="atualizarContatoss()"><i
+                                        class="fa fa-refresh" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="excelContatos()"><i
+                                        class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+                            </div>
                         </div>
-                        <div class="col-sm-offset-6 col-sm-2">
-                            <button type="button" class="btn btn-default btn-sm" ng-click="adicionarLinhaBranca()"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button>
-                        </div>
-                    </div></br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div ui-grid="gridLinhaBranca" class="grid"></div>
+                        </br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div ui-grid="gridContatos" class="grid"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div uib-slide index="3"
-                     class="slide animated">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <h3>Concorrentes Revenda</h3>
+                    <div uib-slide index="2"
+                         class="slide animated">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>Players Linha Branca</h3>
+                            </div>
+                            <div class="col-sm-offset-6 col-sm-2">
+                                <button type="button" class="btn btn-default btn-sm" ng-click="adicionarLinhaBranca()">
+                                    <i
+                                            class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
                         </div>
-                        <div class="col-sm-offset-6 col-sm-2">
-                            <button type="button" class="btn btn-default btn-sm" ng-click="adicionarConcorrenteRevenda()"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button>
+                        </br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div ui-grid="gridLinhaBranca" class="grid"></div>
+                            </div>
                         </div>
-                    </div></br>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div ui-grid="gridConcorrentes" class="grid"></div>
+                    </div>
+                    <div uib-slide index="3"
+                         class="slide animated">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3>Concorrentes Revenda</h3>
+                            </div>
+                            <div class="col-sm-offset-6 col-sm-2">
+                                <button type="button" class="btn btn-default btn-sm"
+                                        ng-click="adicionarConcorrenteRevenda()"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div ui-grid="gridConcorrentes" class="grid"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,7 +171,7 @@
                                    ng-model="selectedClient.revenda.tos.total">
                         </div>
                         <div ng-if="!isBlocked" class="col-sm-1">
-                            <button type="button" class="btn btn-warning btn-sm"ng-click="editarTos()"><i
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="editarTos()"><i
                                     class="fa fa-pencil" aria-hidden="true"></i></button>
                         </div>
                     </div>
