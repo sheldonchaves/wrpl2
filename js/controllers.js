@@ -150,10 +150,7 @@ angular.module("App.controllers", [])
             }, {
                 field: 'nome',
                 displayName: 'Nome'
-            }, {
-                field: 'quantidade',
-                displayName: 'Quantidade'
-            }, {
+            },  {
                 field: 'acao',
                 displayName: 'Status',
                 cellTemplate: '  <div class="action-buttons"> ' +
